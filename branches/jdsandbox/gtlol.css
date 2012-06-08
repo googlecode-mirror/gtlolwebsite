@@ -1,0 +1,193 @@
+body {
+    color: #000000;
+    background-color: #FFFFFF;
+    font-family: Arial;
+    font-size: 12px;
+
+}
+
+#footer {
+    color: #555555;
+    font-size: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    text-align: center;
+}
+
+#main {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    height: 800px;
+    background-color: #FFFFFF;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    overflow: hidden;
+}
+
+
+
+
+#top  {
+    width: 100%;
+    height: 200px;
+    background-color: #FFFFFF;
+    padding:0;
+    
+
+}
+
+
+#login {
+    height: 30px;
+    width: 100%;
+    background-color: #99DD66;
+    text-align: right;
+    font-size: 12px;
+    position: relative;
+    padding: 0;
+}
+
+#secondtop {
+    width: 100%;
+    text-align: center;
+    padding:0;
+
+
+}
+
+#topa {
+    margin: 0;
+    padding: 0;
+    border: 1px solid black;
+}
+
+#center {
+    width: 100%;
+    height: 600px;
+
+
+}
+
+#left {
+    float: left;
+    width: 70%;
+    height: 600px;
+    background-color: #4EA985;
+    clear: both;
+
+}
+
+
+
+#right {
+    float: left;
+    width: 30%;
+    height: 600px;
+    background-color: #507CA1;
+    color: #000000;
+
+    
+}
+
+
+
+
+
+
+
+#frontpagecal {
+    padding: 5px;
+    height: 250px;
+    background-color: #196E4C;
+    margin: 0px;
+    
+
+}
+
+
+
+#secondtop li {
+    list-style-type: none;
+    display: block;
+    float: left;
+    font-size: 15px;
+    padding: 0;
+    background-color: #507CA1;
+    width: 12.5%;
+}
+
+
+
+#adminlink {
+    visibility: hidden;
+    width: 0;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+#welcome {
+    width: 100%;
+    height: 100px;
+}
+
+#frontpagenews {
+    padding: 5px;
+    width: 100%;
+    height: 400px;
+    background-color: #99DD66;
+}
+
+table{
+    width: 90%;
+}
+
+td {
+    text-align: right;
+    }
+
+td.event, th {
+    text-align: left;
+}
+
+
+
+
+
+#frontpagestreamers {
+    height: 200px;
+    background-color: #196E4C;
+}
+
+#frontpagestreamers ul {
+list-style-type: none;
+text-align: left;
+}
+
+a {
+    color: #000000;
+}
+
+
+#m1 a, #m2 a {
+		display: block;
+		margin: 0;
+		padding: 5px 10px;
+		width: auto;
+		text-align: left;
+		text-decoration: none;
+		background: #507CA1;
+		color: #000000;
+		font: 11px arial
+}
+
+#topa div {
+    visibility: hidden;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    
+}
