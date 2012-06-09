@@ -16,10 +16,8 @@ body {
 }
 
 #main {
-    margin-left: auto;
-    margin-right: auto;
-    width: 1000px;
-    height: 800px;
+    margin:0 20px;
+	min-width:1000px;
     background-color: #FFFFFF;
     border-left: 2px solid black;
     border-right: 2px solid black;
@@ -28,17 +26,84 @@ body {
 }
 
 
-
-
 #top  {
-    width: 100%;
-    height: 200px;
-    background-color: #FFFFFF;
-    padding:0;
-    
-
+	width: 100%;
+	height: 200px;
+	background-color: #FFFFFF;
+	padding:0;
 }
 
+#navbar
+{
+	white-space:nowrap;
+	text-align:left;
+	vertical-align:middle;
+	background-color:#2727BF;
+}
+
+#navbar > div
+{
+	position:relative;
+	display:inline-block;
+}
+
+#navbar > div > div
+{
+	opacity:0;
+	visibility:hidden;
+	position:absolute;
+	top:100%;
+	
+	transition:visibility 0s linear 1500ms, opacity 1500ms linear;
+	-moz-transition:visibility 0s linear 1500ms, opacity 1500ms linear;
+	-webkit-transition:visibility 0s linear 1500ms, opacity 1500ms linear;
+	-o-transition:visibility 0s linear 1500ms, opacity 1500ms linear;
+	
+	/*
+	transition-property:opacity,visibility;
+	transition-duration:1500ms;
+	-moz-transition-property: opacity;
+	-mox-transition-duration:1500ms;
+	-webkit-transition-property: opacity;
+	-webkit-transition-duration:1500ms;
+	-o-transition-property: opacity;
+	-o-transition-duration:1500ms;
+	
+	transition-delay:1500ms;
+	-moz-transition-delay:1500ms;
+	-webkit-transition-delay:1500ms;
+	-o-transition-delay:1500ms;
+	*/
+}
+
+#navbar > div:hover > div
+{
+	opacity:1;
+	visibility:visible;
+	
+	transition-delay:0s;
+	-moz-transition-delay:0s;
+	-webkit-transition-delay:0s;
+	-o-transition-delay:0s;
+}
+
+#navbar > div > div > a
+{
+	display:block;
+}
+
+#navbar > div > a
+{
+	display:inline-block;
+	background-color:#ccc;
+	padding:5px 5px;
+	margin: 5px 3px;
+}
+
+#navbar a:first-child
+{
+	margin-left:0px
+}
 
 #login {
     height: 30px;
@@ -54,8 +119,6 @@ body {
     width: 100%;
     text-align: center;
     padding:0;
-
-
 }
 
 #topa {
@@ -80,8 +143,6 @@ body {
 
 }
 
-
-
 #right {
     float: left;
     width: 30%;
@@ -92,12 +153,6 @@ body {
     
 }
 
-
-
-
-
-
-
 #frontpagecal {
     padding: 5px;
     height: 250px;
@@ -106,8 +161,6 @@ body {
     
 
 }
-
-
 
 #secondtop li {
     list-style-type: none;
@@ -119,15 +172,12 @@ body {
     width: 12.5%;
 }
 
-
-
 #adminlink {
     visibility: hidden;
     width: 0;
     margin: 0px;
     padding: 0px;
 }
-
 
 #welcome {
     width: 100%;
@@ -153,10 +203,6 @@ td.event, th {
     text-align: left;
 }
 
-
-
-
-
 #frontpagestreamers {
     height: 200px;
     background-color: #196E4C;
@@ -170,7 +216,6 @@ text-align: left;
 a {
     color: #000000;
 }
-
 
 #m1 a, #m2 a {
 		display: block;
