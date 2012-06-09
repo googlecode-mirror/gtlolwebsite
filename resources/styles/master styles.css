@@ -1,0 +1,144 @@
+/*
+	COLORS:
+		old gold: #CEA73C
+		gold: #FFD141
+		light yellow: #FFF284
+		dark blue: #042155
+		blue: #143D7B
+		light blue: #3395DB
+*/
+
+body {
+    color: #000000;
+    font-family: Arial;
+    font-size: 12px;
+		background-image:url('/resources/images/river texture.jpg');
+}
+
+#banner
+{
+	background-color:black;
+	height:200px;
+	width:100%;
+}
+
+#lolLogo
+{
+	width:409px;
+	height:auto;
+	display:block;
+	margin:0 auto;
+	vertical-align: middle;
+}
+
+#footer {
+    color: #555555;
+    font-size: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    text-align: center;
+}
+
+#main {
+    margin:0 20px;
+		min-width:1000px;
+    /*background-color: #FFFFFF;*/
+    border: 2px solid black;
+    border-top-width:0;
+    overflow: hidden;
+}
+
+#login {
+    height: 30px;
+    width: 100%;
+    background-color: #143D7B; /* blue */
+		color: white;
+    text-align: right;
+    font-size: 12px;
+    position: relative;
+    padding: 0;
+}
+
+#center {
+    width: 100%;
+    height: 600px;
+}
+
+#left {
+    float: left;
+    width: 70%;
+    height: 600px;
+    clear: both;
+
+}
+
+#right {
+    float: left;
+    width: 30%;
+    height: 600px;
+    background-color: #CEA73C; /* old gold */
+    color: #000000;
+}
+
+#frontpagecal {
+    padding: 5px;
+    height: 250px;
+    margin: 0px;
+}
+
+#adminlink {
+    visibility: hidden;
+    width: 0;
+    margin: 0px;
+    padding: 0px;
+}
+
+#welcome {
+    width: 100%;
+    height: 100px;
+}
+
+#frontpagenews {
+    padding: 5px;
+    width: 100%;
+    height: 400px;
+    background-color: #FFD141; /* gold */
+}
+
+table{
+    width: 90%;
+}
+
+td {
+    text-align: right;
+    }
+
+td.event, th {
+    text-align: left;
+}
+
+#frontpagestreamers {
+    height: 200px;
+}
+
+#frontpagestreamers ul {
+list-style-type: none;
+text-align: left;
+}
+
+a {
+    color: #000000;
+}
+
+#m1 a, #m2 a {
+		display: block;
+		margin: 0;
+		padding: 5px 10px;
+		width: auto;
+		text-align: left;
+		text-decoration: none;
+		background: #507CA1;
+		color: #000000;
+		font: 11px arial
+}
