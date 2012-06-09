@@ -1,0 +1,16 @@
+#summary These are the standards that we will use when creating the website.
+
+= Introduction =
+
+Using the same formatting standards will help developers quickly understand what the code is doing.
+
+=General Rules=
+ * Indent using tabs with a length of 2 spaces.
+ * Try not to copy and paste code. Use php includes if possible.
+
+=HTML=
+ * Do not use inline styles unless absolutely necessary.
+ * Include page-specific styles in the head of the page.
+
+=CSS=
+ * Create different CSS files for different widgets.
