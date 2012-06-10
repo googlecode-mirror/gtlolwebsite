@@ -1,10 +1,8 @@
-<div id="login">
-	<p>
-		<a id="adminlink" href="#">Admin</a>Username:<input id="username" type="text" size="25"/>Password:<input id="password" type="text" size="17"/>
-		<button id="submit">Login</button>
-		<button id="newuser">Register</button>
-	</p>
-</div>
+<form id="login" action="/resources/scripts/login.php" method="post">
+	<a id="adminlink" href="#">Admin</a><input id="username" name="username" type="text" size="22" placeholder="Username" /><input id="password" name="password" type="password" size="22" placeholder="Password" />
+	<button id="btnLogin">Login</button>
+	<button id="btnRegister">Register</button>
+</form>
 <div id="banner">
 	<img id="lolLogo" alt="League of Legends Logo" src="/resources/images/logo.png" />
 </div>

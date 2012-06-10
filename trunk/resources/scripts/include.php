@@ -8,4 +8,10 @@
 	{
 		include $_SERVER['DOCUMENT_ROOT'] . "/resources/" . $path;
 	}
+	
+	// same syntax as gtInclude()
+	function gtRequire($path)
+	{
+		require $_SERVER['DOCUMENT_ROOT'] . "/resources/" . $path;
+	}
 ?>
