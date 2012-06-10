@@ -1,151 +1,96 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>GT LoL</title>
-	 <link rel="stylesheet" href="resources/styles/gtlol.css"/>
-    <script type="text/javascript">
-// Copyright 2006-2007 javascript-array.com
-
-var timeout	= 500;
-var closetimer	= 0;
-var ddmenuitem	= 0;
-
-// open hidden layer
-function mopen(id)
-{	
-	// cancel close timer
-	mcancelclosetime();
-
-	// close old layer
-	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
-
-	// get new layer and show it
-	ddmenuitem = document.getElementById(id);
-	ddmenuitem.style.visibility = 'visible';
-
-}
-// close showed layer
-function mclose()
-{
-	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
-}
-
-// go close timer
-function mclosetime()
-{
-	closetimer = window.setTimeout(mclose, timeout);
-}
-
-// cancel close timer
-function mcancelclosetime()
-{
-	if(closetimer)
-	{
-		window.clearTimeout(closetimer);
-		closetimer = null;
-	}
-}
-
-// close layer when click-out
-document.onclick = mclose; 
-</script>
-     <link rel="icon"
-     type="image/png"
-     href="favicon.ico"/>
+	<link rel="stylesheet" href="/resources/styles/master styles.css"/>
+	<link rel="stylesheet" href="/resources/styles/navbar.css" />
+	<link rel="icon" type="image/png" href="favicon.ico"/>
 </head>
 <body>
 <div id="main">
-
-        <div id="top">
-        <div id="login">
-    
-        <p><a id="adminlink" href="#">Admin</a>Username:<input id="username" type="text" size="25"/>Password:<input id="password" type="text" size="17"/>
-        <button id="submit">Login</button>
-        <button id="newuser">Register</button>
-        </p>
-        </div>
-        </div>
-        <div id="secondtop">
-        <ul id="topa">
-        <li ><a href="index.html">Home</a></li>
-        <li ><a href="#">News</a></li>
-        <li ><a href="#">About</a></li>
-        <li ><a href="#">Contact</a></li>
-        <li ><a href="#">Calendar</a></li>
-        <li ><a href="#" onmouseover="mopen('m1')" onmouseout="mclosetime()">Social</a>
-        <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
-        <a href="#">members</a>
-        <a href="#">streams</a>
-        <a href="#">photos</a>
-        <a href="#">polls</a>
-        <a href="#">forums</a>
-        </div>
-        
-        </li>
-        <li ><a href="#" onmouseover="mopen('m2')" onmouseout="mclosetime()">Compete</a>
-        <div id="m2" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
-        <a href="#">teams</a>
-        <a href="#">ladder</a>
-        <a href="#">tournaments</a>
-        </div>
-        
-        </li>
-        <li ><a href="#">Sponsors</a></li>
-        </ul>
-        </div>
-
-
-        
-        <div id="center">
-        <div id="left">
-
-        <div id="frontpagenews">
-        <h2>latest news post</h2><br /><p>This is the latest news post. Show first x lines or text, then have a 'read more' link. If it is a small newspost, have a 'read more' link anyway('see all'?)</p>
-        </div>
-        
-        </div>
-        
-        <div id="right">
-        
-
-        
-        <div id="frontpagecal">
-        <h2>Upcoming events:</h2>
-        <p> Calendar stuff goes here - small list of events in next x hours for the user, or for all public events</p>
-        <table>
-        <tr>
-        <th colspan="2">today</th></tr>
-        <tr><td class="event">Event</td><td>12</td></tr>
-        <tr><td class="event">event two</td><td> 6pm</td></tr>
-        <tr><th colspan="2">tomorrow</th></tr>
-        <tr><td class="event">event three</td><td> 8am</td></tr>
-        </tr>
-        </table>
-        </div>
-        
-        <div id="frontpagestreamers">
-        <h3>current streamers</h3>
-        <p>a list of the current streamers online, each one has a link to its stream. autoupdating?</p>
-        <ul>
-        <li><a href="stream.html?streamid=1000">Streamer 1</a></li>
-        <li><a href="stream.html?streamid=1001">Streamer 2</a></li>
-        <li><a href="stream.html?streamid=1002">Streamer 3</a></li>
-        <li><a href="stream.html?streamid=1003">Streamer 4</a></li>
-        <li><a href="stream.html?streamid=1004">Streamer 5</a></li>
-        </ul>
-        </div>
-        
-        </div>
-        </div>
-        
-
-
-        
-
-    </div>
-    <div id="footer">
-        <p> Footer content</p>
-    </div>
+	<div id="login">
+		<p>
+			<a id="adminlink" href="#">Admin</a>Username:<input id="username" type="text" size="25"/>Password:<input id="password" type="text" size="17"/>
+			<button id="submit">Login</button>
+			<button id="newuser">Register</button>
+		</p>
+	</div>
+	<div id="banner">
+		<img id="lolLogo" alt="League of Legends Logo" src="/resources/images/logo.png" />
+	</div>
+	<div id="navbar">
+		<div><a href="index.html">Home</a></div>
+		<div><a href="#">News</a></div>
+		<div><a href="#">About</a></div>
+		<div><a href="#">Contact</a></div>
+		<div>
+			<a href="#">Calendar</a>
+		</div>
+		<div>
+			<a href="#">Social</a>
+			<div>
+				<a href="#">members</a>
+				<a href="#">streams</a>
+				<a href="#">photos</a>
+				<a href="#">polls</a>
+				<a href="#">forums</a>
+			</div>
+		</div>
+		<div>
+			<a href="#">Compete</a>
+			<div>
+				<a href="#">teams</a>
+				<a href="#">ladder</a>
+				<a href="#">tournaments</a>
+			</div>
+		</div>
+		<div><a href="#">Sponsors</a></div>
+	</div>
+	<div id="center">
+		<div id="left">
+			<div id="frontpagenews">
+				<h2>latest news post</h2><br />
+				<p>This is the latest news post. Show first x lines or text, then have a 'read more' link. If it is a small newspost, have a 'read more' link anyway('see all'?)</p>
+			</div>
+		</div>
+		<div id="right">
+			<div id="frontpagecal">
+				<h2>Upcoming events:</h2>
+				<p> Calendar stuff goes here - small list of events in next x hours for the user, or for all public events</p>
+				<table>
+					<tr><th colspan="2">today</th></tr>
+					<tr>
+						<td class="event">Event</td>
+						<td>12</td>
+					</tr>
+					<tr>
+						<td class="event">event two</td>
+						<td> 6pm</td>
+					</tr>
+					<tr><th colspan="2">tomorrow</th></tr>
+					<tr>
+						<td class="event">event three</td>
+						<td> 8am</td></tr>
+					</tr>
+				</table>
+			</div>
+			<div id="frontpagestreamers">
+				<h3>current streamers</h3>
+				<p>a list of the current streamers online, each one has a link to its stream. autoupdating?</p>
+				<ul>
+					<li><a href="stream.html?streamid=1000">Streamer 1</a></li>
+					<li><a href="stream.html?streamid=1001">Streamer 2</a></li>
+					<li><a href="stream.html?streamid=1002">Streamer 3</a></li>
+					<li><a href="stream.html?streamid=1003">Streamer 4</a></li>
+					<li><a href="stream.html?streamid=1004">Streamer 5</a></li>
+				</ul>
+			</div>
+			<div id="footer">
+				<p> Footer content</p>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
