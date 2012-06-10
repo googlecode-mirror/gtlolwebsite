@@ -32,21 +32,21 @@ body {
 }
 
 #footer {
-    color: #555555;
-    font-size: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 1000px;
-    text-align: center;
+	font-size: 10px;
+	background-color:#143D7B; /* blue */
+	margin-left: auto;
+	margin-right: auto;
+	width: 1000px;
+	text-align: center;
 }
 
 #main {
-    margin:0 20px;
-		min-width:1000px;
-    /*background-color: #FFFFFF;*/
-    border: 2px solid black;
-    border-top-width:0;
-    overflow: hidden;
+	margin:0 20px;
+	min-width:800px;
+	/*background-color: #FFFFFF;*/
+	border: 2px solid black;
+	border-top-width:0;
+	overflow: hidden;
 }
 
 #login {
@@ -61,14 +61,26 @@ body {
 }
 
 #center {
-    width: 100%;
-		background-color: #FFD141; /* gold */
+	width: 100%;
+	/*background-color: #042155; /* dark blue */
+}
+
+#left {
+	float: left;
+	width: 62%;
+	clear: both;
+	background-color:white;
+	padding: 1%;
+	margin:1%;
 }
 
 #right {
-		float:right;
-    width: 30%;
-    background-color: #CEA73C; /* old gold */
+	float: right;
+	width: 30%;
+	background-color: #CEA73C; /* old gold */
+	color: #000000;
+	padding: 1%;
+	margin:1%;
 }
 
 #frontpagecal {
@@ -89,7 +101,7 @@ body {
 }
 
 #frontpagenews {
-    padding: 5px;
+    width: 100%; 
 }
 
 table{
@@ -97,8 +109,8 @@ table{
 }
 
 td {
-    text-align: right;
-    }
+	text-align: right;
+}
 
 td.event, th {
     text-align: left;
