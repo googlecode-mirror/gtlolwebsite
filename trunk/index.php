@@ -1,53 +1,68 @@
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/include.php"; ?>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>GT LoL</title>
-	<link rel="stylesheet" href="/resources/styles/master styles.css"/>
-	<link rel="stylesheet" href="/resources/styles/navbar.css" />
-	<link rel="icon" type="image/png" href="favicon.ico"/>
+	<?php gtInclude("includes/head.php"); ?>
+	<style type="text/css">
+		#center {
+			width: 100%;
+			/*background-color: #042155; /* dark blue */
+		}
+		
+		#left {
+			float: left;
+			width: 62%;
+			clear: both;
+			background-color:white;
+			padding: 1%;
+			margin:1%;
+		}
+
+		#right {
+			float: right;
+			width: 30%;
+			color: #000000;
+			padding: 1%;
+			margin:1%;
+		}
+
+		#frontpagecal {
+			padding: 5px;
+			margin: 0px;
+		}
+			
+		#frontpagenews {
+			width: 100%; 
+		}
+
+		table{
+				width: 90%;
+		}
+
+		td {
+			text-align: right;
+		}
+
+		td.event, th {
+			text-align: left;
+		}
+
+		#frontpagestreamers {
+			height: 200px;
+		}
+
+		#frontpagestreamers ul {
+			list-style-type: none;
+			text-align: left;
+		}
+	</style>
 </head>
 <body>
 <div id="main">
-	<div id="login">
-		<p>
-			<a id="adminlink" href="#">Admin</a>Username:<input id="username" type="text" size="25"/>Password:<input id="password" type="text" size="17"/>
-			<button id="submit">Login</button>
-			<button id="newuser">Register</button>
-		</p>
-	</div>
-	<div id="banner">
-		<img id="lolLogo" alt="League of Legends Logo" src="/resources/images/logo.png" />
-	</div>
-	<div id="navbar">
-		<div><a href="index.html">Home</a></div>
-		<div><a href="#">News</a></div>
-		<div><a href="#">About</a></div>
-		<div><a href="#">Contact</a></div>
-		<div>
-			<a href="#">Calendar</a>
-		</div>
-		<div>
-			<a href="#">Social</a>
-			<div>
-				<a href="#">members</a>
-				<a href="#">streams</a>
-				<a href="#">photos</a>
-				<a href="#">polls</a>
-				<a href="#">forums</a>
-			</div>
-		</div>
-		<div>
-			<a href="#">Compete</a>
-			<div>
-				<a href="#">teams</a>
-				<a href="#">ladder</a>
-				<a href="#">tournaments</a>
-			</div>
-		</div>
-		<div><a href="#">Sponsors</a></div>
-	</div>
+	<?php gtInclude("includes/top.php"); ?>
 	<div id="center">
 		<div id="left">
 			<div id="frontpagenews">
@@ -55,7 +70,7 @@
 				<p>This is the latest news post. Show first x lines or text, then have a 'read more' link. If it is a small newspost, have a 'read more' link anyway('see all'?)</p>
 			</div>
 		</div>
-		<div id="right">
+		<div id="right" class="oldGoldBG">
 			<div id="frontpagecal">
 				<h2>Upcoming events:</h2>
 				<p> Calendar stuff goes here - small list of events in next x hours for the user, or for all public events</p>
@@ -90,8 +105,6 @@
 		</div>
 		<div style="clear:both;"></div>
 	</div>
-	<div id="footer">
-		<p> Footer content</p>
-	</div>
+	<?php gtInclude("includes/foot.php"); ?>
 </body>
 </html>
