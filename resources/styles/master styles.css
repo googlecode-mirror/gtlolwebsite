@@ -15,6 +15,37 @@ body {
 		background-image:url('/resources/images/river texture.jpg');
 }
 
+/* BACKGROUND COLOR CLASSES */
+.oldGoldBG
+{
+	background-color:#CEA73C;
+}
+
+.goldBG
+{
+	background-color:#FFD141
+}
+
+.lightYellowBG
+{
+	background-color:#FFF284;
+}
+
+.darkBlueBG
+{
+	background-color:#042155;
+}
+
+.blueBG
+{
+	background-color:#143D7B;
+}
+
+.lightBlueBG
+{
+	background-color:#3395DB;
+}
+
 #banner
 {
 	background-color:black;
@@ -33,7 +64,6 @@ body {
 
 #footer {
 	font-size: 10px;
-	background-color:#143D7B; /* blue */
 	margin-left: auto;
 	margin-right: auto;
 	width: 1000px;
@@ -43,100 +73,30 @@ body {
 #main {
 	margin:0 20px;
 	min-width:800px;
-	/*background-color: #FFFFFF;*/
 	border: 2px solid black;
 	border-top-width:0;
 	overflow: hidden;
 }
 
 #login {
-    height: 30px;
-    width: 100%;
-    background-color: #143D7B; /* blue */
-		color: white;
-    text-align: right;
-    font-size: 12px;
-    position: relative;
-    padding: 0;
-}
-
-#center {
+	height: 30px;
 	width: 100%;
-	/*background-color: #042155; /* dark blue */
+	background-color: #143D7B; /* blue */
+	color: white;
+	text-align: right;
+	font-size: 12px;
+	position: relative;
+	padding: 0;
 }
 
-#left {
-	float: left;
-	width: 62%;
-	clear: both;
-	background-color:white;
-	padding: 1%;
-	margin:1%;
-}
-
-#right {
-	float: right;
-	width: 30%;
-	background-color: #CEA73C; /* old gold */
-	color: #000000;
-	padding: 1%;
-	margin:1%;
-}
-
-#frontpagecal {
-    padding: 5px;
-    margin: 0px;
-}
 
 #adminlink {
-    visibility: hidden;
-    width: 0;
-    margin: 0px;
-    padding: 0px;
-}
-
-#welcome {
-    width: 100%;
-    height: 100px;
-}
-
-#frontpagenews {
-    width: 100%; 
-}
-
-table{
-    width: 90%;
-}
-
-td {
-	text-align: right;
-}
-
-td.event, th {
-    text-align: left;
-}
-
-#frontpagestreamers {
-    height: 200px;
-}
-
-#frontpagestreamers ul {
-list-style-type: none;
-text-align: left;
+	visibility: hidden;
+	width: 0;
+	margin: 0px;
+	padding: 0px;
 }
 
 a {
-    color: #000000;
-}
-
-#m1 a, #m2 a {
-		display: block;
-		margin: 0;
-		padding: 5px 10px;
-		width: auto;
-		text-align: left;
-		text-decoration: none;
-		background: #507CA1;
-		color: #000000;
-		font: 11px arial
+	color: #000000;
 }
