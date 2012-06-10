@@ -29,6 +29,7 @@
 	display:inline-block;
 	color: white;
 	background-color:#143D7B; /* blue */
+	border-radius:3px;
 	padding:5px 5px;
 	width:7em;
 	
