@@ -10,9 +10,14 @@
 
 body {
     color: #000000;
-    font-family: Arial;
-    font-size: 12px;
-		background-image:url('/resources/images/river texture.jpg');
+	background-image:url('/resources/images/river texture.jpg');
+}
+
+/* for some reason having this in body was making certain elements not have the change */
+*
+{
+	font-family: Arial;
+	font-size: small; /* medium is 12px */
 }
 
 /* BACKGROUND COLOR CLASSES */

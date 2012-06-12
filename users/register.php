@@ -1,7 +1,7 @@
 <?php
 	require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/include.php";
 
-	if ($_POST['doRegister'] == true)
+	if (array_key_exists('doRegister', $_POST) && $_POST['doRegister'] == true)
 	{
 		//validate inputs
 		
@@ -138,6 +138,9 @@
 	<form id="frmLogin" class="goldBG" action="register.php" method="post" onsubmit="return validate();">
 		<input type="hidden" name="doRegister" value="true" />
 		If you already have an account, click <a href="/users/login.php">here</a> to login.<br />
+		
+		<!-- TODO: put errors in separate column in table -->
+		
 		<table>
 			<tr>
 				<td>Username:</td>
