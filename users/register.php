@@ -1,11 +1,63 @@
 <?php
 	require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/include.php";
-
-	if (array_key_exists('doRegister', $_POST) && $_POST['doRegister'] == true)
+	
+	gtRequire("/scripts/validate.php");
+	
+	$errors = array(0);
+	
+	//adds style="display:inline" if necessary
+	function addVisibleStyle($errName, $errs)
 	{
-		//validate inputs
+		if (isset($errs[$errName]) && $errs[$errName] == true)
+		{
+			print 'style="display:inline"';
+		}
+	}
+	
+	/// adds the initial value of a form if necessary
+	function addOriginalValue($name)
+	{
+		if (isset($_POST[$name]))
+		{
+			print "value='$_POST[$name]'";
+		}
+	}
+
+	if (isset($_POST) && isset($_POST['doRegister']) && $_POST['doRegister'] == true)
+	{
+		if ($_POST['newUsername'] == "")
+		{
+			$errors['noUsername'] = true;
+		}
+
+		if ($_POST['newPassword'] == "")
+		{
+			$errors['noPassword'] = true;
+		}
+
+		if ($_POST['newPassword'] != $_POST['retypePassword'])
+		{
+			$errors['passwordMismatch'] = true;
+		}
+
+		if ($_POST['email'] == "")
+		{
+			$errors['noEmail'] = true;
+		}
+		
+		if (!isValidEmail($_POST['email']))
+		{
+			$errors['invalidEmail'] = true;
+		}
+		
+		if ($_POST['email'] != $_POST['retypeEmail'])
+		{
+			$errors['emailMismatch'] = true;
+		}
 		
 		//connect to database
+		//PDO::prepare(string) to prepare string for sql
+		//$errors['usernameTaken'] = true //for if username already exists
 		//try to insert into database
 	}
 ?>
@@ -55,31 +107,10 @@
 		{
 			var isValid = true;
 			
-			var errNoUsername = document.getElementById("errNoUsername");
-			var username = document.getElementById("newUsername").value;
-			if (username == "")
-			{
-				errNoUsername.style.display = "inline";
-				isValid = false;
-			}
-			else
-			{
-				errNoUsername.style.display = "none";
-			}
+			return true; //TODO remove
 			
 			var password1 = document.getElementById("newPassword").value;
 			var password2 = document.getElementById("retypePassword").value;
-			
-			var errNoPassword = document.getElementById("errNoPassword");
-			if (password1 == "")
-			{
-				errNoPassword.style.display = "inline";
-				isValid = false;
-			}
-			else
-			{
-				errNoPassword.style.display = "none";
-			}
 			
 			var errPasswordMismatch = document.getElementById("errPasswordMismatch");
 			if (!isMatch(password1, password2))
@@ -94,17 +125,6 @@
 			
 			var email1 = document.getElementById("email").value;
 			var email2 = document.getElementById("retypeEmail").value;
-			
-			var errNoEmail = document.getElementById("errNoEmail");
-			if (email1 == "")
-			{
-				errNoEmail.style.display = "inline";
-				isValid = false;
-			}
-			else
-			{
-				errNoEmail.style.display = "none";
-			}
 			
 			var errInvalidEmail = document.getElementById("errInvalidEmail");
 			if (!isValidEmail(email1))
@@ -138,45 +158,44 @@
 	<form id="frmLogin" class="goldBG" action="register.php" method="post" onsubmit="return validate();">
 		<input type="hidden" name="doRegister" value="true" />
 		If you already have an account, click <a href="/users/login.php">here</a> to login.<br />
-		
-		<!-- TODO: put errors in separate column in table -->
-		
 		<table>
 			<tr>
 				<td>Username:</td>
+				<td><input type="text" id="newUsername" name="newUsername" size="22" placeholder="Username" required="required" <?php addOriginalValue("newUsername"); ?> /></td>
 				<td>
-					<input type="text" id="newUsername" name="newUsername" size="22" placeholder="Username" />
-					<span id="errNoUsername">You must enter a username.</span>
+					<span id="errNoUsername" <?php addVisibleStyle("noUsername", $errors); ?>>You must enter a username.</span>
+					<?php
+						if (isset($errors) && isset($errors['usernameTaken']) && $errores['usernameTaken'] == true)
+						{
+					?>
+					<span id="errUsernameTaken" style="display:inline;">That username has already been taken. Please choose a different one.</span>
+					<?php
+						}
+					?>
 				</td>
 			</tr>
 			<tr>
 				<td>Password:</td>
-				<td>
-					<input type="password" id="newPassword" name="newPassword" size="22" placeholder="Password" />
-					<span id="errNoPassword">You must enter a password.</span>
-				</td>
+				<td><input type="password" id="newPassword" name="newPassword" size="22" placeholder="Password" required="required" <?php addOriginalValue("newPassword"); ?> /></td>
+				<td><span id="errNoPassword" <?php addVisibleStyle("noPassword", $errors); ?>>You must enter a password.</span></td>
 			</tr>
 			<tr>
 				<td>Retype password:</td>
-				<td>
-					<input type="password" id="retypePassword" name="retypePassword" size="22" placeholder="Retype password" />
-					<span id="errPasswordMismatch">Your two passwords do not match.</span>
-				</td>
+				<td><input type="password" id="retypePassword" name="retypePassword" size="22" placeholder="Retype password" required="required" <?php addOriginalValue("retypePassword"); ?> /></td>
+				<td><span id="errPasswordMismatch" <?php addVisibleStyle("passwordMismatch", $errors); ?>>Your two passwords do not match.</span></td>
 			</tr>
 			<tr>
 				<td>Email:</td>
+				<td><input type="text" id="email" name="email" size="30" placeholder="Email address" required="required" <?php addOriginalValue("email"); ?> /></td>
 				<td>
-					<input type="text" id="email" name="email" size="30" placeholder="Email address" />
-					<span id="errNoEmail">You must enter an email address.</span>
-					<span id="errInvalidEmail">Your email address is not valid.</span>
+					<span id="errNoEmail" <?php addVisibleStyle("noEmail", $errors); ?>>You must enter an email address.</span>
+					<span id="errInvalidEmail" <?php addVisibleStyle("invalidEmail", $errors); ?>>Your email address is not valid.</span>
 				</td>
 			</tr>
 			<tr>
 				<td>Retype Email:</td>
-				<td>
-					<input type="text" id="retypeEmail" name="retypeEmail" size="30" placeholder="Retype email address" />
-					<span id="errEmailMismatch">Your two email addresses do not match.</span>
-				</td>
+				<td><input type="text" id="retypeEmail" name="retypeEmail" size="30" placeholder="Retype email address" required="required" <?php addOriginalValue("retypeEmail"); ?> /></td>
+				<td><span id="errEmailMismatch" <?php addVisibleStyle("emailMismatch", $errors); ?>>Your two email addresses do not match.</span></td>
 			</tr>
 		</table>
 		<button type="submit" name="btnRegister" id="btnRegister">Register</button>
