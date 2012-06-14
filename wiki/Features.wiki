@@ -31,6 +31,7 @@
 
 =Dream Features=
  * Stream from our site
+ * Bloggers (or people to write featured stories/guides)
  * Forum
  * Links to lolmatches.com or lolking.com
   * parse data out of those sites and put onto our site
