@@ -1,5 +1,9 @@
 #summary Describes the tables in the database.
 
+=Information=
+DB Name: gtlol
+
+=Tables=
 ==Users==
 <table cellpadding="4px" border="1px">
  <tr>
