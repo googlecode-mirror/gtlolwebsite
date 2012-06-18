@@ -81,7 +81,7 @@
 	<title>Register</title>
 	<?php gtInclude("/includes/head.php"); ?>
 	<style type="text/css">
-		#frmLogin
+		#frmRegister
 		{
 			width:50%;
 			margin:1em auto;
@@ -90,24 +90,24 @@
 			border-radius:1em;
 		}
 		
-		#frmLogin > table
+		#frmRegister > table
 		{
 			width:100%;
 			margin:auto;
 		}
 		
-		#frmLogin td
+		#frmRegister td
 		{
 			text-align:left;
 		}
 		
-		#frmLogin td:first-child
+		#frmRegister td:first-child
 		{
 			text-align:right;
 			width:40%;
 		}
 		
-		#frmLogin td > span
+		#frmRegister td > span
 		{
 			display:none;	
 			color:red;
@@ -188,7 +188,7 @@
 <body>
 <div id="main">
 	<?php gtInclude("includes/top.php"); ?>
-	<form id="frmLogin" class="goldBG" action="register.php" method="post" onsubmit="return validate();">
+	<form id="frmRegister" class="goldBG" action="register.php" method="post" onsubmit="return validate();">
 		<input type="hidden" name="doRegister" value="true" />
 		If you already have an account, click <a href="/users/login.php">here</a> to login.<br />
 		<table>
