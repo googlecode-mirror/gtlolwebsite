@@ -1,13 +1,13 @@
 
-/* These are currently not being used
-function validatePassword(password)
+function passwordIsValidLength(password)
 {
+	return password.length <= 50;
 }
 
-function validateUsername(username)
+function usernameIsValidLength(username)
 {
+	return username.length <= 30;
 }
-*/
 
 function isMatch(input1, input2)
 {
