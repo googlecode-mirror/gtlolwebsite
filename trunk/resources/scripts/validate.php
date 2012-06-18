@@ -68,4 +68,14 @@
 		}
 	 return $isValid;
 	}
+	
+	function usernameIsValidLength($username)
+	{
+		return strlen($username) <= 30;
+	}
+	
+	function passwordIsValidLength($password)
+	{
+		return strlen($password) <= 50;
+	}
 ?>

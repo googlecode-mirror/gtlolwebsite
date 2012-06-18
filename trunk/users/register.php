@@ -25,32 +25,44 @@
 
 	if (isset($_POST) && isset($_POST['doRegister']) && $_POST['doRegister'] == true)
 	{
-		if ($_POST['newUsername'] == "")
+		extract($_POST);
+	
+		if ($newUsername == "")
 		{
 			$errors['noUsername'] = true;
 		}
+		
+		if (!usernameIsValidLength($newUsername))
+		{
+			$errors['longUsername'] = true;
+		}
 
-		if ($_POST['newPassword'] == "")
+		if ($newPassword == "")
 		{
 			$errors['noPassword'] = true;
 		}
+		
+		if (!passwordIsValidLength($newPassword))
+		{
+			$errors['longPassword'] = true;
+		}
 
-		if ($_POST['newPassword'] != $_POST['retypePassword'])
+		if ($newPassword != $retypePassword)
 		{
 			$errors['passwordMismatch'] = true;
 		}
 
-		if ($_POST['email'] == "")
+		if ($email == "")
 		{
 			$errors['noEmail'] = true;
 		}
 		
-		if (!isValidEmail($_POST['email']))
+		if (!isValidEmail($email))
 		{
 			$errors['invalidEmail'] = true;
 		}
 		
-		if ($_POST['email'] != $_POST['retypeEmail'])
+		if ($email != $retypeEmail)
 		{
 			$errors['emailMismatch'] = true;
 		}
@@ -107,7 +119,17 @@
 		{
 			var isValid = true;
 			
-			return true; //TODO remove
+			var newUsername = document.getElementById("newUsername");
+			var errLongUsername = document.getElementById("errLongUsername");
+			if (!usernameIsValidLength(newUsername))
+			{
+				errLongUsername.style.display = "inline";
+				isValid = false;
+			}
+			else
+			{
+				errLongUsername.style.display = "none";
+			}
 			
 			var password1 = document.getElementById("newPassword").value;
 			var password2 = document.getElementById("retypePassword").value;
@@ -121,6 +143,17 @@
 			else
 			{
 				errPasswordMismatch.style.display = "none";
+			}
+			
+			var errLongPassword = document.getElementById("errLongPassword");
+			if (!passwordIsValidLength(newUsername))
+			{
+				errLongPassword.style.display = "inline";
+				isValid = false;
+			}
+			else
+			{
+				errLongPassword.style.display = "none";
 			}
 			
 			var email1 = document.getElementById("email").value;
@@ -164,6 +197,7 @@
 				<td><input type="text" id="newUsername" name="newUsername" size="22" placeholder="Username" required="required" <?php addOriginalValue("newUsername"); ?> /></td>
 				<td>
 					<span id="errNoUsername" <?php addVisibleStyle("noUsername", $errors); ?>>You must enter a username.</span>
+					<span id="errLongUsername" <?php addVisibleStyle("longUsername", $errors); ?>>Your username must be less than 30 characters long.</span>
 					<?php
 						if (isset($errors) && isset($errors['usernameTaken']) && $errores['usernameTaken'] == true)
 						{
@@ -177,7 +211,10 @@
 			<tr>
 				<td>Password:</td>
 				<td><input type="password" id="newPassword" name="newPassword" size="22" placeholder="Password" required="required" <?php addOriginalValue("newPassword"); ?> /></td>
-				<td><span id="errNoPassword" <?php addVisibleStyle("noPassword", $errors); ?>>You must enter a password.</span></td>
+				<td>
+					<span id="errNoPassword" <?php addVisibleStyle("noPassword", $errors); ?>>You must enter a password.</span>
+					<span id="errLongPassword" <?php addVisibleStyle("longPassword", $errors); ?>>Your password must be less than 50 characters long.</span>
+				</td>
 			</tr>
 			<tr>
 				<td>Retype password:</td>
