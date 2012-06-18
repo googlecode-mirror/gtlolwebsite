@@ -1,7 +1,24 @@
 <?php
 	require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/include.php";
 	
+	$returnURL = isset($_GET['returnURL']) ? $_GET['returnURL'] : "";
+	$returnURLAddition = ""; //part that is added to form action
 	
+	if ($returnURL != "")
+	{
+		$returnURLAddition = "?returnURL=$returnURL";
+	}
+	
+	
+	//get data from either frmLogin or login
+		//if no data from either, make sure the user isn't already logged in
+	//else
+	
+	//validate data
+	
+	//connect to database
+	//check credentials
+		//if correct, go to GET['returnURL'] if it exists. Otherwise go to home page.
 ?>
 
 <!DOCTYPE html>
@@ -17,14 +34,41 @@
 			margin:1em auto;
 			text-align:center;
 			padding:1em;
+			border-radius:1em;
+		}
+		
+		#frmLogin > table
+		{
+			width:100%;
+			margin:auto;
+		}
+		
+		#frmLogin td
+		{
+			text-align:left;
+		}
+		
+		#frmLogin td:first-child
+		{
+			text-align:right;
+			width:40%;
+		}
+		
+		#frmLogin td > span
+		{
+			display:none;
+			color:red;
 		}
 	</style>
+	<script type="text/javascript" src="/resources/scripts/validate.js"></script>
 	<script type="text/javascript">
 		function formIsValid()
 		{
-			var newUsername = document.getElementById("newUsername");
+			var isValid = true;
+		
+			var username = document.getElementById("frmUsername").value;
 			var errLongUsername = document.getElementById("errLongUsername");
-			if (!usernameIsValidLength(newUsername))
+			if (!usernameIsValidLength(username))
 			{
 				errLongUsername.style.display = "inline";
 				isValid = false;
@@ -33,17 +77,41 @@
 			{
 				errLongUsername.style.display = "none";
 			}
+			
+			var password = document.getElementById("frmPassword").value;
+			var errLongPassword = document.getElementById("errLongPassword");
+			if (!passwordIsValidLength(password))
+			{
+				errLongPassword.style.display = "inline";
+				isValid = false;
+			}
+			else
+			{
+				errLongUsername.style.display = "none";
+			}
+			
+			return isValid;
 		}
 	</script>
 </head>
 <body>
 <div id="main">
 	<?php gtInclude("includes/top.php"); ?>
-	<form id="frmLogin" class="goldBG" action="/resources/scripts/login.php" method="post" onsubmit="return formIsValid();">
+	<form id="frmLogin" name="frmLogin" class="goldBG" action="login.php<?php print($returnURLAddition); ?>" method="post" onsubmit="return formIsValid();">
 		You must login to continue.<br />
-		Username: <input type="text" id="frmUsername" name="username" size="22" required="required" placeholder="eg. GTLoLUser" /><br />
-		Password: <input type="password" id="password" name="password" size="22" required="required" placeholder="eg. mypassword01" /><br />
-		<button type="submit" name="btnLogin" id="btnLogin">Login</button><button name="btnRegister" id="btnRegister" type="submit" formaction="/users/register.php">Register</button>
+		<table>
+			<tr>
+				<td>Username:</td>
+				<td><input type="text" id="frmUsername" name="frmUsername" size="22" required="required" placeholder="eg. GTLoLUser" /></td>
+				<td><span id="errLongUsername">Your username is too long.</span></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" id="frmPassword" name="frmPassword" size="22" required="required" placeholder="eg. mypassword01" /></td>
+				<td><span id="errLongPassword">Your password is too long.</span></td>
+			</tr>
+		</table>
+		<button type="submit" name="frmLoginBtn" id="frmLoginBtn">Login</button><button name="btnRegister" id="btnRegister" formaction="/users/register.php">Register</button>
 	</form>
 	<?php gtInclude("includes/foot.php"); ?>
 </div>

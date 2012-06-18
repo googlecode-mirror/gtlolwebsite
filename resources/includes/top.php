@@ -1,4 +1,4 @@
-<form id="login" action="/resources/scripts/login.php" method="post">
+<form id="login" name="login" action="/users/login.php?returnURL=<?php print($_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]); ?>" method="post">
 	<a id="adminlink" href="#">Admin</a><input id="username" name="username" type="text" size="22" placeholder="Username" /><input id="password" name="password" type="password" size="22" placeholder="Password" />
 	<button id="btnLogin">Login</button>
 	<button id="btnRegister">Register</button>
