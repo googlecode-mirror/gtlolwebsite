@@ -1,7 +1,7 @@
-<form id="login" name="login" action="/users/login.php?returnURL=<?php print($_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]); ?>" method="post">
+<form id="login" name="login" action="/users/login.php?returnURL=<?php print($_SERVER['PHP_SELF']); ?>" method="post">
 	<a id="adminlink" href="#">Admin</a><input id="username" name="username" type="text" size="22" placeholder="Username" /><input id="password" name="password" type="password" size="22" placeholder="Password" />
-	<button id="btnLogin">Login</button>
-	<button id="btnRegister">Register</button>
+	<button type="submit" id="btnLogin">Login</button>
+	<button type="button" formaction="/users/register.php" id="btnRegister">Register</button>
 </form>
 <div id="banner">
 	<img id="lolLogo" alt="League of Legends Logo" src="/resources/images/logo.png" />

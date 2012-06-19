@@ -1,5 +1,18 @@
 <?php
 	require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/include.php";
+
+	gtRequire("/scripts/requireNoLogin.php");
+	gtRequire("/scripts/validate.php");
+	
+	function addVisibleStyle($errName)
+	{
+		global $errors;
+		
+		if (isset($errors) && isset($errors[$errName]))
+		{
+			print('style="display:inline"');
+		}
+	}
 	
 	$returnURL = isset($_GET['returnURL']) ? $_GET['returnURL'] : "";
 	$returnURLAddition = ""; //part that is added to form action
@@ -9,16 +22,45 @@
 		$returnURLAddition = "?returnURL=$returnURL";
 	}
 	
-	
 	//get data from either frmLogin or login
-		//if no data from either, make sure the user isn't already logged in
-	//else
-	
-	//validate data
-	
-	//connect to database
-	//check credentials
-		//if correct, go to GET['returnURL'] if it exists. Otherwise go to home page.
+	if (isset($_POST['frmLoginBtn']) || isset($_POST['btnLogin']))
+	{
+		if (isset($_POST['frmLoginBtn']))
+		{
+			//from form in login.php (ie. this file)
+			
+			$username = $_POST['frmUsername'];
+			$password = $_POST['frmPassword'];
+		}
+		else //if (isset($_POST['btnLogin']))
+		{
+			//from form in top.php
+			
+			$username = $_POST['username'];
+			$password = $_POST['password'];
+		}
+		
+		//validate data
+		if (!usernameIsValidLength($username))
+		{
+			$errors['longUsername'] = true;
+		}
+		
+		if (!passwordIsValidLength($password))
+		{
+			$errors['longPassword'] = true;
+		}
+		
+		if (!isset($errors))
+		{
+			//connect to database
+			//check credentials
+				//if correct, go to $_SERVER['DOCUMENT_ROOT'].GET['returnURL'] if it exists. Otherwise go to home page.
+		}
+	} 
+	else //if user is not already logged in
+	{
+	}
 ?>
 
 <!DOCTYPE html>
@@ -103,12 +145,12 @@
 			<tr>
 				<td>Username:</td>
 				<td><input type="text" id="frmUsername" name="frmUsername" size="22" required="required" placeholder="eg. GTLoLUser" /></td>
-				<td><span id="errLongUsername">Your username is too long.</span></td>
+				<td><span id="errLongUsername" <?php addVisibleStyle("longUsername"); ?>>Your username is too long.</span></td>
 			</tr>
 			<tr>
 				<td>Password:</td>
 				<td><input type="password" id="frmPassword" name="frmPassword" size="22" required="required" placeholder="eg. mypassword01" /></td>
-				<td><span id="errLongPassword">Your password is too long.</span></td>
+				<td><span id="errLongPassword" <?php addVisibleStyle("longPassword"); ?>>Your password is too long.</span></td>
 			</tr>
 		</table>
 		<button type="submit" name="frmLoginBtn" id="frmLoginBtn">Login</button><button name="btnRegister" id="btnRegister" formaction="/users/register.php">Register</button>
