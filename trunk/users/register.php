@@ -1,4 +1,6 @@
 <?php
+	//TODO populate username field with username from login.php or the form in top.php 
+
 	require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/include.php";
 	
 	gtRequire("/scripts/validate.php");
@@ -10,7 +12,7 @@
 	{
 		if (isset($errs[$errName]) && $errs[$errName] == true)
 		{
-			print 'style="display:inline"';
+			print('style="display:inline"');
 		}
 	}
 	
@@ -35,6 +37,7 @@
 		if (!usernameIsValidLength($newUsername))
 		{
 			$errors['longUsername'] = true;
+			print($newUsername);
 		}
 
 		if ($newPassword == "")
@@ -68,6 +71,11 @@
 		}
 		
 		//connect to database
+		gtRequire("/scripts/connectToDB.php");
+		
+		$connection = getConnection();
+		print($connection);
+		
 		//PDO::prepare(string) to prepare string for sql
 		//$errors['usernameTaken'] = true //for if username already exists
 		//try to insert into database
@@ -119,7 +127,7 @@
 		{
 			var isValid = true;
 			
-			var newUsername = document.getElementById("newUsername");
+			var newUsername = document.getElementById("newUsername").value;
 			var errLongUsername = document.getElementById("errLongUsername");
 			if (!usernameIsValidLength(newUsername))
 			{
@@ -146,7 +154,7 @@
 			}
 			
 			var errLongPassword = document.getElementById("errLongPassword");
-			if (!passwordIsValidLength(newUsername))
+			if (!passwordIsValidLength(password1))
 			{
 				errLongPassword.style.display = "inline";
 				isValid = false;
