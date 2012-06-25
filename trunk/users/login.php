@@ -139,7 +139,7 @@
 <body>
 <div id="main">
 	<?php gtInclude("includes/top.php"); ?>
-	<form id="frmLogin" name="frmLogin" class="goldBG" action="login.php<?php print($returnURLAddition); ?>" method="post" onsubmit="return formIsValid();">
+	<form id="frmLogin" name="frmLogin" class="secondaryFGColor" action="login.php<?php print($returnURLAddition); ?>" method="post" onsubmit="return formIsValid();">
 		You must login to continue.<br />
 		<table>
 			<tr>

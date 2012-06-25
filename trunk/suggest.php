@@ -56,7 +56,7 @@
 <div id="main">
 	<?php gtInclude("includes/top.php"); ?>
 	
-	<form id="frmFeedback" class="goldBG" action="register.php" method="post">
+	<form id="frmFeedback" class="secondaryFGColor" action="register.php" method="post">
 		
 	</form>
 	

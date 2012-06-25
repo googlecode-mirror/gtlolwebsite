@@ -6,7 +6,7 @@
 <div id="banner">
 	<img id="lolLogo" alt="League of Legends Logo" src="/resources/images/logo.png" />
 </div>
-<div id="navbar">
+<div id="navbar" class="tertiaryBGColor"> <!--  style="background-color:#888888" -->
 	<div><a href="index.html">Home</a></div>
 	<div><a href="#">News</a></div>
 	<div><a href="#">About</a></div>

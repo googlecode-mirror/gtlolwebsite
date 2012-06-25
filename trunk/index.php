@@ -7,39 +7,34 @@
 	<title>GT LoL</title>
 	<?php gtInclude("includes/head.php"); ?>
 	<style type="text/css">
-		#center {
-			width: 100%;
-			/*background-color: #042155; /* dark blue */
-		}
-		
 		#left {
 			float: left;
-			width: 62%;
+			width: 70%;
 			clear: both;
-			background-color:white;
-			padding: 1%;
-			margin:1%;
+		}
+		
+		#left-inner {
+			padding:5px;
+			margin:5px;
 		}
 
 		#right {
 			float: right;
 			width: 30%;
-			color: #000000;
-			padding: 1%;
-			margin:1%;
+		}
+		
+		#right-inner {
+			padding:5px;
+			margin:5px;
 		}
 
 		#frontpagecal {
 			padding: 5px;
 			margin: 0px;
 		}
-			
-		#frontpagenews {
-			width: 100%; 
-		}
 
 		table{
-				width: 90%;
+			width: 90%;
 		}
 
 		td {
@@ -61,16 +56,18 @@
 	</style>
 </head>
 <body>
-<div id="main">
+<div id="main" class="primaryBGColor">
 	<?php gtInclude("includes/top.php"); ?>
-	<div id="center">
-		<div id="left">
+	<div id="left">
+		<div id="left-inner" class="primaryFGColor">
 			<div id="frontpagenews">
 				<h2>latest news post</h2><br />
 				<p>This is the latest news post. Show first x lines or text, then have a 'read more' link. If it is a small newspost, have a 'read more' link anyway('see all'?)</p>
 			</div>
 		</div>
-		<div id="right" class="oldGoldBG">
+	</div>
+	<div id="right">
+		<div id="right-inner" class="secondaryFGColor" >
 			<div id="frontpagecal">
 				<h2>Upcoming events:</h2>
 				<p> Calendar stuff goes here - small list of events in next x hours for the user, or for all public events</p>
@@ -82,12 +79,12 @@
 					</tr>
 					<tr>
 						<td class="event">event two</td>
-						<td> 6pm</td>
+						<td>6pm</td>
 					</tr>
 					<tr><th colspan="2">tomorrow</th></tr>
 					<tr>
 						<td class="event">event three</td>
-						<td> 8am</td></tr>
+						<td>8am</td>
 					</tr>
 				</table>
 			</div>
@@ -103,8 +100,8 @@
 				</ul>
 			</div>
 		</div>
-		<div style="clear:both;"></div>
 	</div>
+	<div style="clear:both;"></div>
 	<?php gtInclude("includes/foot.php"); ?>
 </body>
 </html>

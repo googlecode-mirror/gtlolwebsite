@@ -3,7 +3,7 @@
 	white-space:nowrap;
 	text-align:center;
 	vertical-align:middle;
-	background-color:#042155; /* dark blue */
+	/*background-color:#042155; /* dark blue */
 }
 
 #navbar a, #navbar a:link
@@ -27,8 +27,8 @@
 #navbar > div > a
 {
 	display:inline-block;
-	color: white;
-	background-color:#143D7B; /* blue */
+	color:#CEA73C; /* white; */
+	background-color:black; /* #143D7B; /* blue */
 	border-radius:3px;
 	padding:5px 5px;
 	width:7em;
@@ -56,6 +56,7 @@
 #navbar > div:hover > a
 {
 	background-color:#CEA73C; /* old gold */
+	color:black;
 }
 
 #navbar > div:hover > div
