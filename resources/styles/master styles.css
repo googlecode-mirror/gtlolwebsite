@@ -9,7 +9,6 @@
 */
 
 body {
-    color: #000000;
 	background-image:url('/resources/images/river texture.jpg');
 }
 
@@ -20,35 +19,53 @@ body {
 	font-size: small; /* medium is 12px */
 }
 
-/* BACKGROUND COLOR CLASSES */
-.oldGoldBG
+/* COLOR CLASSES */
+
+body, .primaryTextColor
 {
-	background-color:#CEA73C;
+	color:black;
 }
 
-.goldBG
+.secondaryTextColor
 {
-	background-color:#FFD141
+	color:white;
 }
 
-.lightYellowBG
+.tertiaryFGColor
 {
-	background-color:#FFF284;
+	background-color:#CEA73C; /* old gold */ 
 }
 
-.darkBlueBG
+.secondaryFGColor
 {
-	background-color:#042155;
+	background-color:#FFD141; /* gold */
 }
 
-.blueBG
+.primaryFGColor
 {
-	background-color:#143D7B;
+	background-color:white;
 }
 
-.lightBlueBG
+/*
+.alternateColor1
 {
-	background-color:#3395DB;
+	background-color:#FFF284; /* light yellow /
+}
+*/
+
+.primaryBGColor
+{
+	background-color:#042155; /* dark blue */
+}
+
+.secondaryBGColor
+{
+	background-color:#143D7B; /* blue */
+}
+
+.tertiaryBGColor
+{
+	background-color:gray;
 }
 
 #banner

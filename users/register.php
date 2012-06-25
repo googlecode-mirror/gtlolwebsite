@@ -196,7 +196,7 @@
 <body>
 <div id="main">
 	<?php gtInclude("includes/top.php"); ?>
-	<form id="frmRegister" class="goldBG" action="register.php" method="post" onsubmit="return validate();">
+	<form id="frmRegister" class="secondaryFGColor" action="register.php" method="post" onsubmit="return validate();">
 		<input type="hidden" name="doRegister" value="true" />
 		If you already have an account, click <a href="/users/login.php">here</a> to login.<br />
 		<table>
