@@ -1,4 +1,4 @@
-<form id="login" name="login" action="/users/login.php?returnURL=<?php print($_SERVER['PHP_SELF']); ?>" method="post">
+<form id="login" name="login" class="secondaryBGColor" action="/users/login.php?returnURL=<?php print($_SERVER['PHP_SELF']); ?>" method="post">
 	<a id="adminlink" href="#">Admin</a><input id="username" name="username" type="text" size="22" placeholder="Username" /><input id="password" name="password" type="password" size="22" placeholder="Password" />
 	<button type="submit" id="btnLogin">Login</button>
 	<button type="button" formaction="/users/register.php" id="btnRegister">Register</button>
