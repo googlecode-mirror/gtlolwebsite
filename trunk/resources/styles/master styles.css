@@ -53,7 +53,7 @@ body, .primaryTextColor
 }
 */
 
-.primaryBGColor
+#main, .primaryBGColor
 {
 	background-color:#042155; /* dark blue */
 }
@@ -65,7 +65,7 @@ body, .primaryTextColor
 
 .tertiaryBGColor
 {
-	background-color:gray;
+	background-color:#464349; /*#323035; /*#9F9DA7;*/ /* gray */
 }
 
 #banner
@@ -73,6 +73,7 @@ body, .primaryTextColor
 	background-color:black;
 	height:200px;
 	width:100%;
+	margin:5px 0;
 }
 
 #lolLogo
@@ -95,15 +96,13 @@ body, .primaryTextColor
 #main {
 	margin:0 20px;
 	min-width:800px;
-	border: 2px solid black;
-	border-top-width:0;
 	overflow: hidden;
 }
 
 #login {
 	height: 30px;
 	width: 100%;
-	background-color: #143D7B; /* blue */
+	/* background-color: #143D7B; /* blue */
 	color: white;
 	text-align: right;
 	font-size: 12px;
