@@ -1,6 +1,13 @@
 <?php
 	function getConnection()
 	{
-		return mysql_connect("localhost", "gtloladmin", "poppy");
+		try
+		{
+			return new PDO('mysql:host=localhost;port=3307;dbname=gtlol', 'gtloladmin', 'poppy');
+		} catch (PDOException $pdoe)
+		{
+			print("ERROR: " . $pdoe->getMessage() . "<br />");
+			die();
+		}
 	}
 ?>
