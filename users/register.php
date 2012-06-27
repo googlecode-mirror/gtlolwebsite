@@ -73,8 +73,20 @@
 		//connect to database
 		gtRequire("/scripts/connectToDB.php");
 		
-		$connection = getConnection();
-		print($connection);
+		$dbh = getConnection();
+		
+		try
+		{
+			$dbh->prepare("SELECT 1 FROM Users WHERE username=':username'");
+			$dbh->bindParam(':username', $username);
+			
+			$results = $dbh->execute();
+		} catch (Exception $e)
+		{
+			print($e);
+		}
+		
+		$pdo = null;
 		
 		//PDO::prepare(string) to prepare string for sql
 		//$errors['usernameTaken'] = true //for if username already exists
