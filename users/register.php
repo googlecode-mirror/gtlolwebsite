@@ -4,9 +4,9 @@
 	require $_SERVER['DOCUMENT_ROOT'] . "/resources/functions/include.php";
 	
 	gtRequire("functions/validate.php");
-	gtRequire("functions/encrypt.php");
 	
 	$errors = array(0);
+	$areErrors = false;
 	
 	/// adds style="display:inline" if necessary
 	function addVisibleStyle($errName, $errs)
@@ -33,74 +33,85 @@
 		if ($newUsername == "")
 		{
 			$errors['noUsername'] = true;
+			$areErrors = true;
 		}
 		
 		if (!usernameIsValidLength($newUsername))
 		{
 			$errors['longUsername'] = true;
-			print($newUsername);
+			$areErrors = true;
 		}
 
 		if ($newPassword == "")
 		{
 			$errors['noPassword'] = true;
+			$areErrors = true;
 		}
 		
 		if (!passwordIsValidLength($newPassword))
 		{
 			$errors['longPassword'] = true;
+			$areErrors = true;
 		}
 
 		if ($newPassword != $retypePassword)
 		{
 			$errors['passwordMismatch'] = true;
+			$areErrors = true;
 		}
 
 		if ($email == "")
 		{
 			$errors['noEmail'] = true;
+			$areErrors = true;
 		}
 		
 		if (!isValidEmail($email))
 		{
 			$errors['invalidEmail'] = true;
+			$areErrors = true;
 		}
 		
 		if ($email != $retypeEmail)
 		{
 			$errors['emailMismatch'] = true;
+			$areErrors = true;
 		}
 		
-		//connect to database
-		gtRequire("scripts/connectToDB.php");
-		
-		$dbh = getConnection();
-		
-		$statement = $dbh->prepare("SELECT 1 FROM Users WHERE username=?");
-		$statement->execute(array($newUsername));
-		$result = $statement->fetch();
-		
-		if ($result != null) //username already exists
+		if (!$areErrors)
 		{
-			$errors['usernameTaken'] = true;
-		}
-		else
-		{
-			//try adding to database
-			$statement = $dbh->prepare('INSERT INTO Users (username, email, password) VALUES (:username, :email, :password)');
-			$statement->bindParam(':username', $newUsername);
-			$statement->bindParam(':email', $email);
-			$statement->bindParam(':password', crypt($newPassword));
+			gtRequire("functions/connectToDB.php");
+			gtRequire("functions/encrypt.php");
 			
-			if ($statement->execute())
+			$username = strtolower($newUsername);
+			$dbh = getConnection();
+			
+			$statement = $dbh->prepare("SELECT 1 FROM Users WHERE username=?");
+			$statement->execute(array($username));
+			$result = $statement->fetch();
+			
+			if ($result != null) //username already exists
 			{
-				header('Location: register-successful.php');
+				$errors['usernameTaken'] = true;
+			}
+			else
+			{
+				//try adding to database
+				$statement = $dbh->prepare('INSERT INTO Users (username, email, password) VALUES (:username, :email, :password)');
+				$statement->bindParam(':username', $username);
+				$statement->bindParam(':email', $email);
+				$statement->bindParam(':password', gtCrypt($newPassword));
+				
+				if ($statement->execute())
+				{
+					header('Location: register-successful.php');
+				}
+				
+				//if successful, redirect to register-successful.php
 			}
 			
-			//if successful, redirect to register-successful.php
+			$pdo = null;
 		}
-		
-		$pdo = null;
 	}
 ?>
 
@@ -228,7 +239,7 @@
 					<span id="errNoUsername" <?php addVisibleStyle("noUsername", $errors); ?>>You must enter a username.</span>
 					<span id="errLongUsername" <?php addVisibleStyle("longUsername", $errors); ?>>Your username must be less than 30 characters long.</span>
 					<?php
-						if (isset($errors) && isset($errors['usernameTaken']) && $errores['usernameTaken'] == true)
+						if (isset($errors) && isset($errors['usernameTaken']) && $errors['usernameTaken'] == true)
 						{
 					?>
 					<span id="errUsernameTaken" style="display:inline;">That username has already been taken. Please choose a different one.</span>
