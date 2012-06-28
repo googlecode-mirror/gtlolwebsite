@@ -1,8 +1,8 @@
 <?php
-	require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/include.php";
+	require $_SERVER['DOCUMENT_ROOT'] . "/resources/functions/include.php";
 
-	gtRequire("/scripts/requireNoLogin.php");
-	gtRequire("/scripts/validate.php");
+	gtRequire("scripts/requireNoLogin.php");
+	gtRequire("functions/validate.php");
 	
 	function addVisibleStyle($errName)
 	{
@@ -68,7 +68,7 @@
 <html>
 <head>
 	<title>Login</title>
-	<?php gtInclude("/includes/head.php"); ?>
+	<?php gtInclude("includes/head.php"); ?>
 	<style type="text/css">
 		#frmLogin
 		{

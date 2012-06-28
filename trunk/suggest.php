@@ -1,7 +1,7 @@
 <?php
-	require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/include.php";
+	require $_SERVER['DOCUMENT_ROOT'] . "/resources/functions/include.php";
 	
-	gtRequire("/scripts/requireLogin.php");
+	gtRequire("scripts/requireLogin.php");
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
 		Bad idea because what if they refresh? need to post to another page that redirects to self if want to do this
 			need to store post data in $_SESSION
 	-->
-	<?php gtInclude("/includes/head.php"); ?>
+	<?php gtInclude("includes/head.php"); ?>
 	
 	<style type="text/css">
 		#frmFeedback
