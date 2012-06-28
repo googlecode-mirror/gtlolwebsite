@@ -1,4 +1,4 @@
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/include.php"; ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/resources/functions/include.php"; ?>
 
 <!DOCTYPE html>
 

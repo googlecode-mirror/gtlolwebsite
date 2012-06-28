@@ -2,7 +2,7 @@
 
 <html>
 <head>
-	<?php include "/includes/head.php"; ?>
+	<?php //need to copy stuff from template ?>
 </head>
 <body>
 </body>

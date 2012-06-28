@@ -1,13 +1,14 @@
 <?php
 	//TODO populate username field with username from login.php or the form in top.php 
 
-	require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/include.php";
+	require $_SERVER['DOCUMENT_ROOT'] . "/resources/functions/include.php";
 	
-	gtRequire("/scripts/validate.php");
+	gtRequire("functions/validate.php");
+	gtRequire("functions/encrypt.php");
 	
 	$errors = array(0);
 	
-	//adds style="display:inline" if necessary
+	/// adds style="display:inline" if necessary
 	function addVisibleStyle($errName, $errs)
 	{
 		if (isset($errs[$errName]) && $errs[$errName] == true)
@@ -25,7 +26,7 @@
 		}
 	}
 
-	if (isset($_POST) && isset($_POST['doRegister']) && $_POST['doRegister'] == true)
+	if (isset($_POST) && isset($_POST['btnRegister']))
 	{
 		extract($_POST);
 	
@@ -71,26 +72,35 @@
 		}
 		
 		//connect to database
-		gtRequire("/scripts/connectToDB.php");
+		gtRequire("scripts/connectToDB.php");
 		
 		$dbh = getConnection();
 		
-		try
+		$statement = $dbh->prepare("SELECT 1 FROM Users WHERE username=?");
+		$statement->execute(array($newUsername));
+		$result = $statement->fetch();
+		
+		if ($result != null) //username already exists
 		{
-			$dbh->prepare("SELECT 1 FROM Users WHERE username=':username'");
-			$dbh->bindParam(':username', $username);
+			$errors['usernameTaken'] = true;
+		}
+		else
+		{
+			//try adding to database
+			$statement = $dbh->prepare('INSERT INTO Users (username, email, password) VALUES (:username, :email, :password)');
+			$statement->bindParam(':username', $newUsername);
+			$statement->bindParam(':email', $email);
+			$statement->bindParam(':password', crypt($newPassword));
 			
-			$results = $dbh->execute();
-		} catch (Exception $e)
-		{
-			print($e);
+			if ($statement->execute())
+			{
+				header('Location: register-successful.php');
+			}
+			
+			//if successful, redirect to register-successful.php
 		}
 		
 		$pdo = null;
-		
-		//PDO::prepare(string) to prepare string for sql
-		//$errors['usernameTaken'] = true //for if username already exists
-		//try to insert into database
 	}
 ?>
 
@@ -99,7 +109,7 @@
 <html>
 <head>
 	<title>Register</title>
-	<?php gtInclude("/includes/head.php"); ?>
+	<?php gtInclude("includes/head.php"); ?>
 	<style type="text/css">
 		#frmRegister
 		{
@@ -209,7 +219,6 @@
 <div id="main">
 	<?php gtInclude("includes/top.php"); ?>
 	<form id="frmRegister" class="secondaryFGColor" action="register.php" method="post" onsubmit="return validate();">
-		<input type="hidden" name="doRegister" value="true" />
 		If you already have an account, click <a href="/users/login.php">here</a> to login.<br />
 		<table>
 			<tr>
