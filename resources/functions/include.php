@@ -1,4 +1,6 @@
 <?php
+	$ROOT = $_SERVER['DOCUMENT_ROOT'];
+	$SERVER = 'localhost:8080'; //eg google.com
 
 	/*
 		$path is the path relative to the "resources" folder
@@ -6,12 +8,14 @@
 	*/
 	function gtInclude($path)
 	{
-		include $_SERVER['DOCUMENT_ROOT'] . "/resources/" . $path;
+		global $ROOT;
+		include $ROOT . "/resources/" . $path;
 	}
 	
 	// same syntax as gtInclude()
 	function gtRequire($path)
 	{
-		require $_SERVER['DOCUMENT_ROOT'] . "/resources/" . $path;
+		global $ROOT;
+		require $ROOT . "/resources/" . $path;
 	}
 ?>

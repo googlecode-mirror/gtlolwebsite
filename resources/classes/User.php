@@ -1,11 +1,14 @@
 <?php
-public class User
+class User
 {
-	private var $id, $name;
+	private $id;
+	private $username;
+	private $name;
 
-	public function __construct($name, $id)
+	public function __construct($id, $username, $name)
 	{
 		$this->id = $id;
+		$this->username = $username;
 		$this->name = $name;
 	}
 	
