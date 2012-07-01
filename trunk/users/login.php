@@ -1,6 +1,8 @@
 <?php
 	require $_SERVER['DOCUMENT_ROOT'] . "/resources/functions/include.php";
-
+	
+	//header("Location: http://localhost:8080");
+	
 	gtRequire("scripts/requireNoLogin.php");
 	gtRequire("functions/validate.php");
 	
@@ -14,6 +16,7 @@
 		}
 	}
 	
+	//prepare form-action return url
 	$returnURL = isset($_GET['returnURL']) ? $_GET['returnURL'] : "";
 	$returnURLAddition = ""; //part that is added to form action
 	
@@ -39,6 +42,7 @@
 			$username = $_POST['username'];
 			$password = $_POST['password'];
 		}
+		$username = strtolower($username);
 		
 		//validate data
 		if (!usernameIsValidLength($username))
@@ -53,13 +57,37 @@
 		
 		if (!isset($errors))
 		{
-			//connect to database
-			//check credentials
-				//if correct, go to $_SERVER['DOCUMENT_ROOT'].GET['returnURL'] if it exists. Otherwise go to home page.
+			gtRequire("functions/connectToDB.php");
+			gtRequire("functions/encrypt.php");
+			
+			$dbh = getConnection();
+			
+			$statement = $dbh->prepare("SELECT id, username, password, name FROM Users WHERE username=:username");
+			$statement->bindParam(':username', $username);
+			$statement->execute();
+			$result = $statement->fetch();
+
+			if ($result == null)
+			{
+				$errors['badUsername'] = true;
+			}
+			else if ($result['password'] != gtCrypt($password))
+			{
+				$errors['badPassword'] = true;
+			}
+			else
+			{
+				//login successful
+				gtRequire('classes/User.php');
+				
+				global $SERVER;
+				
+				$user = new User($result['id'], $result['username'], $result['name']);
+				$_SESSION['user'] = $user;
+				
+				gtInclude("scripts/redirect.php");
+			}
 		}
-	} 
-	else //if user is not already logged in
-	{
 	}
 ?>
 
@@ -145,12 +173,28 @@
 			<tr>
 				<td>Username:</td>
 				<td><input type="text" id="frmUsername" name="frmUsername" size="22" required="required" placeholder="eg. GTLoLUser" /></td>
-				<td><span id="errLongUsername" <?php addVisibleStyle("longUsername"); ?>>Your username is too long.</span></td>
+				<td>
+					<span id="errLongUsername" <?php addVisibleStyle("longUsername"); ?>>Your username is too long.</span>
+					<?php
+						if (isset($errors['badUsername']))
+						{
+					?>
+							<span id="errBadUsername" style="display:inline;">This username was not found in the database.</span>
+					<?php } ?>
+				</td>
 			</tr>
 			<tr>
 				<td>Password:</td>
 				<td><input type="password" id="frmPassword" name="frmPassword" size="22" required="required" placeholder="eg. mypassword01" /></td>
-				<td><span id="errLongPassword" <?php addVisibleStyle("longPassword"); ?>>Your password is too long.</span></td>
+				<td>
+					<span id="errLongPassword" <?php addVisibleStyle("longPassword"); ?>>Your password is too long.</span>
+					<?php
+						if (isset($errors['badPassword']))
+						{
+					?>
+							<span id="errBadPassword" style="display:inline;">The entered password is incorrect for the entered username.</span>
+					<?php } ?>
+				</td>
 			</tr>
 		</table>
 		<button type="submit" name="frmLoginBtn" id="frmLoginBtn">Login</button><button name="btnRegister" id="btnRegister" formaction="/users/register.php">Register</button>

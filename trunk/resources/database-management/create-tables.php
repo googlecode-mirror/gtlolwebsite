@@ -1,3 +1,5 @@
+<?php
+/*
 CREATE TABLE Users(
  id INT AUTO_INCREMENT PRIMARY KEY,
  username VARCHAR(30) NOT NULL UNIQUE,
@@ -6,3 +8,5 @@ CREATE TABLE Users(
  password VARCHAR(50) NOT NULL,
  email_is_validated BOOLEAN NOT NULL DEFAULT 0
 );
+*/
+?>

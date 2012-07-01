@@ -3,19 +3,9 @@
 	
 	session_start();
 	
-	if (isset($_SESSION['userID']))
+	if (isset($_SESSION['user']))
 	{
 		//user is logged in
-		
-		if (isset($_GET['returnURL']))
-		{
-			$url = $_GET['returnURL'];
-		}
-		else
-		{
-			$url = $_SERVER['DOCUMENT_ROOT'];
-		}
-		
-		header("Location: $url");
+		gtRequire("scripts/redirect.php");
 	}
 ?>
