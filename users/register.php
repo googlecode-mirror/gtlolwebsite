@@ -83,10 +83,9 @@
 			gtRequire("functions/connectToDB.php");
 			gtRequire("functions/encrypt.php");
 			
-			$username = strtolower($newUsername);
 			$dbh = getConnection();
 			
-			$statement = $dbh->prepare("SELECT 1 FROM Users WHERE username=?");
+			$statement = $dbh->prepare("SELECT 1 FROM Users WHERE LOWER(username)=LOWER(?)");
 			$statement->execute(array($username));
 			$result = $statement->fetch();
 			

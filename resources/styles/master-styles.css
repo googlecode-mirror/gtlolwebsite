@@ -99,7 +99,8 @@ body, .primaryTextColor
 	overflow: hidden;
 }
 
-#login {
+/* located in top.php */
+#accountInfo {
 	height: 30px;
 	width: 100%;
 	/* background-color: #143D7B; /* blue */
