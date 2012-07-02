@@ -1,8 +1,6 @@
 <?php
 	require $_SERVER['DOCUMENT_ROOT'] . "/resources/functions/include.php";
 	
-	//header("Location: http://localhost:8080");
-	
 	gtRequire("scripts/requireNoLogin.php");
 	gtRequire("functions/validate.php");
 	
@@ -31,14 +29,12 @@
 		if (isset($_POST['frmLoginBtn']))
 		{
 			//from form in login.php (ie. this file)
-			
 			$username = $_POST['frmUsername'];
 			$password = $_POST['frmPassword'];
 		}
 		else //if (isset($_POST['btnLogin']))
 		{
 			//from form in top.php
-			
 			$username = $_POST['username'];
 			$password = $_POST['password'];
 		}
@@ -77,8 +73,6 @@
 			else
 			{
 				//login successful
-				gtRequire('classes/User.php');
-				
 				global $SERVER;
 				
 				$user = new User($result['id'], $result['username'], $result['name']);
@@ -129,7 +123,7 @@
 			color:red;
 		}
 	</style>
-	<script type="text/javascript" src="/resources/scripts/validate.js"></script>
+	<script type="text/javascript" src="/resources/js/validate.js"></script>
 	<script type="text/javascript">
 		function formIsValid()
 		{
@@ -171,7 +165,9 @@
 		<table>
 			<tr>
 				<td>Username:</td>
-				<td><input type="text" id="frmUsername" name="frmUsername" size="22" required="required" placeholder="eg. GTLoLUser" /></td>
+				<td>
+					<input type="text" id="frmUsername" name="frmUsername" <?php if (isset($username)) print("value='$username'"); ?> size="22" required="required" placeholder="eg. GTLoLUser" />
+				</td>
 				<td>
 					<span id="errLongUsername" <?php addVisibleStyle("longUsername"); ?>>Your username is too long.</span>
 					<?php

@@ -111,6 +111,11 @@ body, .primaryTextColor
 	padding: 0;
 }
 
+#accountInfo a:link, #accountInfo a:visited
+{
+	color:white;
+}
+
 #adminlink {
 	visibility: hidden;
 	width: 0;
@@ -118,6 +123,6 @@ body, .primaryTextColor
 	padding: 0px;
 }
 
-a {
+a:link {
 	color: #000000;
 }
