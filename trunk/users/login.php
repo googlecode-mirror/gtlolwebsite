@@ -42,7 +42,6 @@
 			$username = $_POST['username'];
 			$password = $_POST['password'];
 		}
-		$username = strtolower($username);
 		
 		//validate data
 		if (!usernameIsValidLength($username))
@@ -62,7 +61,7 @@
 			
 			$dbh = getConnection();
 			
-			$statement = $dbh->prepare("SELECT id, username, password, name FROM Users WHERE username=:username");
+			$statement = $dbh->prepare("SELECT id, username, password, name FROM Users WHERE LOWER(username)=LOWER(:username)");
 			$statement->bindParam(':username', $username);
 			$statement->execute();
 			$result = $statement->fetch();
