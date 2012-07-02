@@ -17,8 +17,8 @@
 	?>
 			<form id="login" name="login" class="secondaryBGColor" action="/users/login.php?returnURL=<?php print($_SERVER['PHP_SELF']); ?>" method="post">
 				<a id="adminlink" href="#">Admin</a><input id="username" name="username" type="text" size="22" placeholder="Username" /><input id="password" name="password" type="password" size="22" placeholder="Password" />
-				<button type="submit" id="btnLogin" name="btnLogin">Login</button>
-				<button type="button" formaction="/users/register.php" id="btnRegister">Register</button>
+				<input type="submit" id="btnLogin" name="btnLogin" value="Login" />
+				<input type="submit" formaction="/users/register.php" id="btnRegister" name="btnRegister" value="Register" />
 			</form>
 	<?php
 		}
@@ -28,10 +28,11 @@
 	<img id="lolLogo" alt="League of Legends Logo" src="/resources/images/logo.png" />
 </div>
 <div id="navbar" class="tertiaryBGColor"> <!--  style="background-color:#888888" -->
-	<div><a href="index.html">Home</a></div>
-	<div><a href="#">News</a></div>
-	<div><a href="#">About</a></div>
-	<div><a href="#">Contact</a></div>
+	<div><a href="/">Home</a></div>
+	<div><a href="/news.php">News</a></div>
+	<div><a href="/about.php">About</a></div>
+	<div><a href="/contact.php">Contact</a></div>
+	<!--
 	<div>
 		<a href="#">Calendar</a>
 	</div>
@@ -53,5 +54,6 @@
 			<a href="#">tournaments</a>
 		</div>
 	</div>
-	<div><a href="#">Sponsors</a></div>
+	-->
+	<div><a href="/sponsors.php">Sponsors</a></div>
 </div>

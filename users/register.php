@@ -26,6 +26,7 @@
 		}
 	}
 
+	//TODO change so that this handles stuff diffently when from top.php
 	if (isset($_POST) && isset($_POST['btnRegister']))
 	{
 		extract($_POST);
@@ -274,7 +275,7 @@
 				<td><span id="errEmailMismatch" <?php addVisibleStyle("emailMismatch", $errors); ?>>Your two email addresses do not match.</span></td>
 			</tr>
 		</table>
-		<button type="submit" name="btnRegister" id="btnRegister">Register</button>
+		<input type="submit" name="btnRegister" id="btnRegister" value="Register" />
 	</form>
 	<?php gtInclude("includes/foot.php"); ?>
 </div>
