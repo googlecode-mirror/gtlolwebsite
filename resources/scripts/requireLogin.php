@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	gtRequireOnce("scripts/startSession.php");
 	
 	if (!(isset($_SESSION['userID']) && $_SESSION['userID'] > 0))
 	{

@@ -1,7 +1,7 @@
 <?php
 	//only visitors who are not logged in are allowed to continue
 	
-	session_start();
+	gtRequireOnce("scripts/startSession.php");
 	
 	if (isset($_SESSION['user']))
 	{

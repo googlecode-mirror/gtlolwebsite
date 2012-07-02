@@ -1,30 +1,29 @@
+<div id="accountInfo">
+	<?php
+		gtRequireOnce("scripts/startSession.php");
 
-<?php
-	gtRequireOnce("classes/User.php");
-
-	session_start();
-
-	if (isset($_SESSION['user'])) //user is logged in
-	{
-		$user = $_SESSION['user'];
-?>
-		<a href="/users/">
-			<?php print($user->getUsername()); ?>
-		</a>
-		<a href="/users/logout.php">logout</a>
-<?php
-	}
-	else
-	{
-?>
-		<form id="login" name="login" class="secondaryBGColor" action="/users/login.php?returnURL=<?php print($_SERVER['PHP_SELF']); ?>" method="post">
-			<a id="adminlink" href="#">Admin</a><input id="username" name="username" type="text" size="22" placeholder="Username" /><input id="password" name="password" type="password" size="22" placeholder="Password" />
-			<button type="submit" id="btnLogin">Login</button>
-			<button type="button" formaction="/users/register.php" id="btnRegister">Register</button>
-		</form>
-<?php
-	}
-?>
+		if (isset($_SESSION['user'])) //user is logged in
+		{
+			$user = $_SESSION['user'];
+	?>
+			<a href="/users/">
+				<?php print($user->getUsername()); ?>
+			</a>|
+			<a href="/users/logout.php">logout</a>
+	<?php
+		}
+		else
+		{
+	?>
+			<form id="login" name="login" class="secondaryBGColor" action="/users/login.php?returnURL=<?php print($_SERVER['PHP_SELF']); ?>" method="post">
+				<a id="adminlink" href="#">Admin</a><input id="username" name="username" type="text" size="22" placeholder="Username" /><input id="password" name="password" type="password" size="22" placeholder="Password" />
+				<button type="submit" id="btnLogin" name="btnLogin">Login</button>
+				<button type="button" formaction="/users/register.php" id="btnRegister">Register</button>
+			</form>
+	<?php
+		}
+	?>
+</div>
 <div id="banner">
 	<img id="lolLogo" alt="League of Legends Logo" src="/resources/images/logo.png" />
 </div>

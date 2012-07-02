@@ -1,7 +1,7 @@
 <?php
 	require $_SERVER['DOCUMENT_ROOT'] . "/resources/functions/include.php";
 
-	session_start();
+	gtRequireOnce("scripts/startSession.php");
 	session_destroy();
 
 	gtRequire("scripts/redirect.php");
