@@ -192,7 +192,8 @@
 				</td>
 			</tr>
 		</table>
-		<button type="submit" name="frmLoginBtn" id="frmLoginBtn">Login</button><button name="btnRegister" id="btnRegister" formaction="/users/register.php">Register</button>
+		<input type="submit" name="frmLoginBtn" id="frmLoginBtn" value="Login" />
+		<input type="submit" name="btnRegister" id="btnRegister" formaction="/users/register.php" value="Register" />
 	</form>
 	<?php gtInclude("includes/foot.php"); ?>
 </div>
