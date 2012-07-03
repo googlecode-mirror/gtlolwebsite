@@ -16,9 +16,11 @@
 		{
 	?>
 			<form id="login" name="login" class="secondaryBGColor" action="/users/login.php?returnURL=<?php print($_SERVER['PHP_SELF']); ?>" method="post">
-				<a id="adminlink" href="#">Admin</a><input id="username" name="username" type="text" size="22" placeholder="Username" /><input id="password" name="password" type="password" size="22" placeholder="Password" />
+				<a id="adminlink" href="#">Admin</a>
+				<input id="username" name="username" type="text" size="22" placeholder="Username" required="required" />
+				<input id="password" name="password" type="password" size="22" placeholder="Password" required="required" />
 				<input type="submit" id="btnLogin" name="btnLogin" value="Login" />
-				<input type="submit" formaction="/users/register.php" id="btnRegister" name="btnRegister" value="Register" />
+				<input type="submit" formaction="/users/register.php" id="btnRegisterLink" name="btnRegisterLink" value="Register" />
 			</form>
 	<?php
 		}
