@@ -26,18 +26,7 @@
 	//get data from either frmLogin or login
 	if (isset($_POST['frmLoginBtn']) || isset($_POST['btnLogin']))
 	{
-		if (isset($_POST['frmLoginBtn']))
-		{
-			//from form in login.php (ie. this file)
-			$username = $_POST['frmUsername'];
-			$password = $_POST['frmPassword'];
-		}
-		else //if (isset($_POST['btnLogin']))
-		{
-			//from form in top.php
-			$username = $_POST['username'];
-			$password = $_POST['password'];
-		}
+		extract($_POST); //gets $username and $password
 		
 		//validate data
 		if (!usernameIsValidLength($username))
@@ -129,7 +118,7 @@
 		{
 			var isValid = true;
 		
-			var username = document.getElementById("frmUsername").value;
+			var username = document.getElementById("username").value;
 			var errLongUsername = document.getElementById("errLongUsername");
 			if (!usernameIsValidLength(username))
 			{
@@ -141,7 +130,7 @@
 				errLongUsername.style.display = "none";
 			}
 			
-			var password = document.getElementById("frmPassword").value;
+			var password = document.getElementById("password").value;
 			var errLongPassword = document.getElementById("errLongPassword");
 			if (!passwordIsValidLength(password))
 			{
@@ -166,7 +155,7 @@
 			<tr>
 				<td>Username:</td>
 				<td>
-					<input type="text" id="frmUsername" name="frmUsername" <?php if (isset($username)) print("value='$username'"); ?> size="22" required="required" placeholder="eg. GTLoLUser" />
+					<input type="text" id="username" name="username" <?php if (isset($username)) print("value='$username'"); ?> size="22" required="required" placeholder="eg. GTLoLUser" />
 				</td>
 				<td>
 					<span id="errLongUsername" <?php addVisibleStyle("longUsername"); ?>>Your username is too long.</span>
@@ -180,7 +169,7 @@
 			</tr>
 			<tr>
 				<td>Password:</td>
-				<td><input type="password" id="frmPassword" name="frmPassword" size="22" required="required" placeholder="eg. mypassword01" /></td>
+				<td><input type="password" id="password" name="password" size="22" required="required" placeholder="eg. mypassword01" /></td>
 				<td>
 					<span id="errLongPassword" <?php addVisibleStyle("longPassword"); ?>>Your password is too long.</span>
 					<?php
@@ -193,7 +182,7 @@
 			</tr>
 		</table>
 		<input type="submit" name="frmLoginBtn" id="frmLoginBtn" value="Login" />
-		<input type="submit" name="btnRegister" id="btnRegister" formaction="/users/register.php" value="Register" />
+		<input type="submit" name="btnRegisterLink" id="btnRegisterLink" formaction="/users/register.php" value="Register" />
 	</form>
 	<?php gtInclude("includes/foot.php"); ?>
 </div>
