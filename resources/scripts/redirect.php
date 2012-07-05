@@ -1,6 +1,8 @@
 <?php
 global $SERVER;
 
+gtRequireOnce('constants.php');
+
 if (isset($_GET['returnURL']))
 {
 	$url = $SERVER . $_GET['returnURL'];
