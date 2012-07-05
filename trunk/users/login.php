@@ -62,8 +62,6 @@
 			else
 			{
 				//login successful
-				global $SERVER;
-				
 				$user = new User($result['id'], $result['username'], $result['name']);
 				$_SESSION['user'] = $user;
 				

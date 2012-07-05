@@ -1,9 +1,16 @@
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/resources/functions/include.php"; ?>
+
 <!DOCTYPE html>
 
 <html>
 <head>
-	<?php include "/includes/head.php"; ?>
+	<title>Login</title>
+	<?php gtInclude("includes/head.php"); ?>
 </head>
 <body>
+<div id="main">
+	<?php gtInclude("includes/top.php"); ?>
+	<?php gtInclude("includes/foot.php"); ?>
+</div>
 </body>
 </html>
