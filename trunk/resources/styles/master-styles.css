@@ -68,6 +68,11 @@ body, .primaryTextColor
 	background-color:#464349; /*#323035; /*#9F9DA7;*/ /* gray */
 }
 
+.contentBox
+{
+	padding:1em 2em;
+}
+
 #banner
 {
 	background-color:black;

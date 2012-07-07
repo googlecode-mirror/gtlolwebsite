@@ -1,7 +1,7 @@
 <?php
 	require $_SERVER['DOCUMENT_ROOT'] . "/resources/functions/include.php";
 	
-	gtInclude('constants.php');
+	gtIncludeOnce('constants.php');
 	
 	global $PRESIDENT, $VICE_PRESIDENT, $TREASURER, $SECRETARY, $WEB_MASTER;
 ?>
@@ -12,17 +12,11 @@
 <head>
 	<title>Login</title>
 	<?php gtInclude("includes/head.php"); ?>
-	<style type="text/css">
-		#content
-		{
-			padding:5px;
-		}
-	</style>
 </head>
 <body>
 <div id="main">
 	<?php gtInclude("includes/top.php"); ?>
-	<div id="content" class="primaryFGColor">
+	<div id="content" class="primaryFGColor contentBox">
 		<p>
 			GTLoL is a legitimate League of Legends club at Georgia Tech.
 			We have meetings and host tournaments (both online and on campus).

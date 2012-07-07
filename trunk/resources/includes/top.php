@@ -9,7 +9,7 @@
 			<a href="/users/">
 				<?php print($user->getUsername()); ?>
 			</a>|
-			<a href="/users/logout.php">logout</a>
+			<a href="/users/logout.php?returnURL=<?php print($_SERVER['PHP_SELF']); ?>">logout</a>
 	<?php
 		}
 		else
