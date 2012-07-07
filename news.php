@@ -10,6 +10,9 @@
 <body>
 <div id="main">
 	<?php gtInclude("includes/top.php"); ?>
+	<div class="primaryFGColor">
+		
+	</div>
 	<?php gtInclude("includes/foot.php"); ?>
 </div>
 </body>

@@ -14,7 +14,6 @@
 		}
 		
 		#left-inner {
-			padding:5px;
 			margin:5px;
 		}
 
@@ -24,12 +23,10 @@
 		}
 		
 		#right-inner {
-			padding:5px;
 			margin:5px;
 		}
 
 		#frontpagecal {
-			padding: 5px;
 			margin: 0px;
 		}
 
@@ -59,7 +56,7 @@
 <div id="main" class="primaryBGColor">
 	<?php gtInclude("includes/top.php"); ?>
 	<div id="left">
-		<div id="left-inner" class="primaryFGColor">
+		<div id="left-inner" class="primaryFGColor contentBox">
 			<div id="frontpagenews">
 				<h2>latest news post</h2><br />
 				<p>This is the latest news post. Show first x lines or text, then have a 'read more' link. If it is a small newspost, have a 'read more' link anyway('see all'?)</p>
@@ -67,7 +64,7 @@
 		</div>
 	</div>
 	<div id="right">
-		<div id="right-inner" class="secondaryFGColor" >
+		<div id="right-inner" class="secondaryFGColor contentBox" >
 			<div id="frontpagecal">
 				<h2>Upcoming events:</h2>
 				<p> Calendar stuff goes here - small list of events in next x hours for the user, or for all public events</p>

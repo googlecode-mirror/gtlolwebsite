@@ -2,6 +2,18 @@
 	require $_SERVER['DOCUMENT_ROOT'] . "/resources/functions/include.php";
 	
 	gtRequire("scripts/requireLogin.php");
+	
+	$hasResponse = false;
+	
+	if (isset($_SESSION['success']))
+	{
+		$hasResponse = true;
+		$message = $_SESSION['message'];
+		$success = $_SESSION['success'];
+		
+		unset($_SESSION['message']);
+		unset($_SESSION['success']);
+	}
 ?>
 
 <!DOCTYPE html>
@@ -9,22 +21,13 @@
 <html>
 <head>
 	<title>Make Suggestion for GTLoL</title>
-	<!-- allows users to submit a request to GT LoL 
-		will post to self
-		self will send email if necessary then disable all form elements with the sent values also added
-			need to add javascript or html that prevents user from resubmitting.
-		Bad idea because what if they refresh? need to post to another page that redirects to self if want to do this
-			need to store post data in $_SESSION
-	-->
 	<?php gtInclude("includes/head.php"); ?>
-	
 	<style type="text/css">
 		#frmFeedback
 		{
 			width:50%;
 			margin:1em auto;
 			text-align:center;
-			padding:1em;
 			border-radius:1em;
 		}
 		
@@ -50,14 +53,42 @@
 			display:none;	
 			color:red;
 		}
+		
+		/* width */
+		#subject, #suggestion
+		{
+			width:20em;
+		}
+		
+		#suggestion
+		{
+			height:6em;
+		}
 	</style>
 </head>
 <body>
 <div id="main">
 	<?php gtInclude("includes/top.php"); ?>
-	
-	<form id="frmFeedback" class="secondaryFGColor" action="register.php" method="post">
-		
+	<form id="frmFeedback" class="secondaryFGColor contentBox" action="/resources/form-actions/suggest.php" method="post">
+		<?php
+			if($hasResponse)
+			{
+		?>
+				<p style="color:<?php if($success) { print("green"); } else { print("red"); } ?>">
+					<?php print($message); ?>
+				</p>
+		<?php } ?>
+		<table>
+			<tr>
+				<td>Subject:</td>
+				<td><input type="text" id="subject" name="subject" autofocus="autofocus" /></td>
+			</tr>
+			<tr>
+				<td>Suggestion:</td>
+				<td><textarea id="suggestion" name="suggestion"></textarea></td>
+			</tr>
+		</table>
+		<input type="submit" value="Make Suggestion" />
 	</form>
 	
 	<?php gtInclude("includes/foot.php"); ?>
