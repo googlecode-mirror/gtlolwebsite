@@ -1,10 +1,24 @@
- #navbar
+/*
+	#navbar
+		the container of the navigation bar
+	#navbar < div
+		the container of a menu
+	#navbar < div < a
+		the title of the menu
+	#navbar < div < div
+		a the dropdown part of the menu
+	#navbar < div < div < a
+		the links in the menu
+*/
+
+#navbar
 {
 	white-space:nowrap;
 	text-align:center;
 	vertical-align:middle;
 	margin:5px 0;
-	/*background-color:#042155; /* dark blue */
+	width:100%;
+	box-shadow:0 0 20px 5px black inset;
 }
 
 #navbar a, #navbar a:link
@@ -17,7 +31,7 @@
 {
 	position:relative;
 	display:inline-block;
-	margin: 5px 3px;
+	margin:5px 0px;
 }
 
 #navbar > div:first-child
@@ -28,8 +42,9 @@
 #navbar > div > a
 {
 	display:inline-block;
-	color:#CEA73C; /* white; */
+	color:white; /*#CEA73C; */
 	background-color:black; /* #143D7B; /* blue */
+	box-shadow:0 0 10px 2px black;
 	border-radius:3px;
 	padding:5px 5px;
 	width:7em;
