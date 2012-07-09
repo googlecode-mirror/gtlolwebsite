@@ -1,3 +1,3 @@
-<div id="footer" class="secondaryBGColor">
+<div id="footer">
 	<p> Footer content</p>
 </div>
