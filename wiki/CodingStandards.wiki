@@ -9,11 +9,16 @@ Using the same formatting standards will help developers quickly understand what
  * Try not to copy and paste code. Use php includes if possible.
 
 ==Naming Convention==
-*PHP Class Files:* [classname].class.php
+*PHP Class Files:* classname.class.php
+
 *Class Names:* use pascal case
+
 *Method Names:* use camel case
+
 *Pages:* use a dash (-) to separate words
+
 *Resources:* use a dash (-) to separate words
+
 
 ==HTML==
  * Do not use inline styles unless absolutely necessary.
