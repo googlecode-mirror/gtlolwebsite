@@ -1,0 +1,135 @@
+/*
+	COLORS:
+		old gold: #CEA73C
+		gold: #FFD141
+		light yellow: #FFF284
+		dark blue: #042155
+		blue: #143D7B
+		light blue: #3395DB
+*/
+
+body {
+	background-image:url('/resources/images/river_bg.jpg');
+}
+
+/* for some reason having this in body was making certain elements not have the change */
+*
+{
+	font-family: Arial;
+	font-size: small; /* medium is 12px */
+}
+
+/* COLOR CLASSES */
+
+body, .primaryTextColor
+{
+	color:black;
+}
+
+.secondaryTextColor
+{
+	color:white;
+}
+
+.tertiaryFGColor
+{
+	background-color:#CEA73C; /* old gold */ 
+}
+
+.secondaryFGColor
+{
+	background-color:#FFD141; /* gold */
+}
+
+.primaryFGColor
+{
+	background-color:white;
+}
+
+/*
+.alternateColor1
+{
+	background-color:#FFF284; /* light yellow /
+}
+*/
+
+#main, .primaryBGColor
+{
+	background-color:#042155; /* dark blue */
+}
+
+.secondaryBGColor
+{
+	background-color:#143D7B; /* blue */
+}
+
+.tertiaryBGColor
+{
+	background-color:#464349; /*#323035; /*#9F9DA7;*/ /* gray */
+}
+
+.contentBox
+{
+	padding:1em 2em;
+	box-shadow:0 0 20px 5px black;
+}
+
+#banner
+{
+	background-color:black;
+	height:200px;
+	width:auto;
+	box-shadow:0 0 20px 10px black;
+	margin:10px;
+}
+
+#lolLogo
+{
+	width:409px;
+	height:auto;
+	display:block;
+	margin:0 auto;
+	vertical-align: middle;
+}
+
+#footer {
+	font-size: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1000px;
+	text-align: center;
+	color:#FFD141;
+}
+
+#main {
+	margin:0 20px;
+	min-width:800px;
+}
+
+/* located in top.php */
+#accountInfo {
+	height: 30px;
+	width: 100%;
+	/* background-color: #143D7B; /* blue */
+	color: white;
+	text-align: right;
+	font-size: 12px;
+	position: relative;
+	padding: 0;
+}
+
+#accountInfo a:link, #accountInfo a:visited
+{
+	color:white;
+}
+
+#adminlink {
+	visibility: hidden;
+	width: 0;
+	margin: 0px;
+	padding: 0px;
+}
+
+a:link {
+	color: #000000;
+}
