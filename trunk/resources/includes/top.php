@@ -17,8 +17,8 @@
 	?>
 			<form id="login" name="login" action="/users/login.php?returnURL=<?php print($_SERVER['PHP_SELF']); ?>" method="post">
 				<a id="adminlink" href="#">Admin</a>
-				<input id="username" name="username" type="text" size="22" placeholder="Username" required="required" />
-				<input id="password" name="password" type="password" size="22" placeholder="Password" required="required" />
+				<input id="username" name="username" type="text" size="22" placeholder="Username" />
+				<input id="password" name="password" type="password" size="22" placeholder="Password" />
 				<input type="submit" id="btnLogin" name="btnLogin" value="Login" />
 				<input type="submit" formaction="/users/register.php" id="btnRegisterLink" name="btnRegisterLink" value="Register" />
 			</form>
@@ -34,7 +34,7 @@
 	<div><a href="/news.php">News</a></div>
 	<div><a href="/about.php">About</a></div>
 	<div><a href="/contact.php">Contact</a></div>
-	
+	<!--
 	<div>
 		<a href="#">Calendar</a>
 	</div>
@@ -56,6 +56,6 @@
 			<a href="#">tournaments</a>
 		</div>
 	</div>
-	
+	-->
 	<div><a href="/sponsors.php">Sponsors</a></div>
 </div>

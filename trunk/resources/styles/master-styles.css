@@ -9,7 +9,7 @@
 */
 
 body {
-	background-image:url('/resources/images/river texture.jpg');
+	background-image:url('/resources/images/river_bg.jpg');
 }
 
 /* for some reason having this in body was making certain elements not have the change */
@@ -71,6 +71,7 @@ body, .primaryTextColor
 .contentBox
 {
 	padding:1em 2em;
+	box-shadow:0 0 20px 5px black;
 }
 
 #banner

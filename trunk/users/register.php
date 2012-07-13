@@ -52,8 +52,11 @@
 	function inputIsValid()
 	{
 		extract($_POST);
+		global $errors;
 		
 		$isValid = true;
+		
+		print("InputIsvalid()");
 	
 		if ($newUsername == "")
 		{
@@ -79,6 +82,7 @@
 			$isValid = false;
 		}
 
+		//password mismatch
 		if ($newPassword != $retypePassword)
 		{
 			$errors['passwordMismatch'] = true;
@@ -105,11 +109,11 @@
 		
 		return $isValid;
 	}
-
-	gtRequire("functions/validate.php");
 	
 	if (isset($_POST['btnRegister']))
 	{
+		gtRequire("functions/validate.php");
+	
 		//register the user
 		if (inputIsValid())
 		{
@@ -180,7 +184,7 @@
 			color:red;
 		}
 	</style>
-	<script type="text/javascript" src="/resources/scripts/validate.js"></script>
+	<script type="text/javascript" src="/resources/js/validate.js"></script>
 	<script type="text/javascript">
 		function validate()
 		{
