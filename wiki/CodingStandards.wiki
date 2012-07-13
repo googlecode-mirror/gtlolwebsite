@@ -1,16 +1,23 @@
 #summary These are the standards that we will use when creating the website.
 
-= Introduction =
+==Introduction==
 
 Using the same formatting standards will help developers quickly understand what the code is doing.
 
-=General Rules=
+==General Rules==
  * Indent using tabs with a length of 2 spaces.
  * Try not to copy and paste code. Use php includes if possible.
 
-=HTML=
+==Naming Convention==
+*PHP Class Files:* [classname].class.php
+*Class Names:* use pascal case
+*Method Names:* use camel case
+*Pages:* use a dash (-) to separate words
+*Resources:* use a dash (-) to separate words
+
+==HTML==
  * Do not use inline styles unless absolutely necessary.
  * Include page-specific styles in the head of the page.
 
-=CSS=
+==CSS==
  * Create different CSS files for different widgets.
