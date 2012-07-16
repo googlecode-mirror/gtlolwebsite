@@ -1,12 +1,3 @@
-<?php //should be called using require_once
-
-	//autoloading classes must come before session_start
-	function autoloadClasses($classname)
-	{
-		gtRequireOnce('classes/' . $classname . '.class.php');
-	}
-	
-	spl_autoload_register('autoloadClasses');
-	
+<?php //should be called using require_once. PHP will throw a notice if session_start() is called multiple times.
 	session_start();
 ?>

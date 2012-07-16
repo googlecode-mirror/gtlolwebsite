@@ -1,5 +1,5 @@
 <?php
-	require $_SERVER['DOCUMENT_ROOT'] . "/resources/functions/include.php";
+	require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/initialize.php";
 	
 	gtRequire("scripts/requireNoLogin.php");
 	gtRequire("functions/validate.php");
@@ -28,17 +28,6 @@
 	{
 		extract($_POST); //gets $username and $password
 		
-		//validate data
-		if (!usernameIsValidLength($username))
-		{
-			$errors['longUsername'] = true;
-		}
-		
-		if (!passwordIsValidLength($password))
-		{
-			$errors['longPassword'] = true;
-		}
-		
 		if (!isset($errors))
 		{
 			gtRequire("functions/connectToDB.php");
@@ -62,7 +51,7 @@
 			else
 			{
 				//login successful
-				$user = new User($result['id'], $result['username'], $result['name']);
+				$user = new User($result['id'], $result['username'], $result['password'], $result['name']);
 				$_SESSION['user'] = $user;
 				
 				gtInclude("scripts/redirect.php");

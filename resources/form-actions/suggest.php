@@ -1,7 +1,7 @@
 <?php
 	//receives the post data from /suggest.php then redirects to /suggest.php with a response
 	
-	require $_SERVER['DOCUMENT_ROOT'] . "/resources/functions/include.php";
+	require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/initialize.php";
 	gtRequireOnce('scripts/startSession.php');
 	gtRequireOnce('constants.php');
 	
