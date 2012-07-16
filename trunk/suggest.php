@@ -1,5 +1,5 @@
 <?php
-	require $_SERVER['DOCUMENT_ROOT'] . "/resources/functions/include.php";
+	require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/initialize.php";
 	
 	gtRequire("scripts/requireLogin.php");
 	

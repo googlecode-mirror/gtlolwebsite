@@ -1,0 +1,59 @@
+<?php	
+	$ROOT = $_SERVER['DOCUMENT_ROOT'];
+
+	/*
+		$path is the path relative to the "resources" folder
+		eg. "script/initialize.php"
+	*/
+	function gtInclude($path)
+	{
+		include compilePath($path);
+	}
+	
+	function gtIncludeOnce($path)
+	{
+		include_once compilePath($path);
+	}
+	
+	// same syntax as gtInclude()
+	function gtRequire($path)
+	{
+		require compilePath($path);
+	}
+	
+	function gtRequireOnce($path)
+	{
+		require_once compilePath($path);
+	}
+	
+	function compilePath($path)
+	{
+		global $ROOT;
+		return $ROOT . "/resources/" . $path;
+	}
+	
+	//autoloading classes must come before session_start
+	//upon creating a class, you should add to this method
+	function autoloadClasses($classname)
+	{
+		switch($classname)
+		{
+			case 'User':
+			case 'UserFactory':
+			case 'Validator':
+			case 'Encryptor':
+				$classpath = 'domain/';
+				break;
+			case 'DBConnection':
+				$classpath = 'infrastructure/';
+				break;
+			default:
+				//an option is to search the classes directory for the class using readdir(), opendir(), and is_dir(). Should switch below to E_USER_WARNING if this is implemented
+				trigger_error("$classname was not found in the list of classes. Please add $classname to autoloadClasses()", E_USER_ERROR);
+		}
+		
+		gtRequireOnce('classes/' . $classpath . $classname . '.class.php');
+	}
+	
+	spl_autoload_register('autoloadClasses');
+?>

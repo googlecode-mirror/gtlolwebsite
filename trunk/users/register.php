@@ -1,9 +1,8 @@
 <?php
 	//TODO populate username field with username from login.php or the form in top.php 
 
-	require $_SERVER['DOCUMENT_ROOT'] . "/resources/functions/include.php";
-	
-	$errors = array(0);
+	require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/initialize.php";
+	gtIncludeOnce('scripts/requireNoLogin.php');
 	
 	/// adds style="display:inline" if necessary
 	function addVisibleStyle($errName, $errs)
@@ -23,118 +22,26 @@
 		}
 	}
 	
-	//returns true if the user was successfully added into the database
-	function insertUserIntoDB($dbh)
-	{
-		gtRequireOnce("functions/encrypt.php");
-		
-		extract($_POST);
-	
-		$statement = $dbh->prepare('INSERT INTO Users (username, email, password) VALUES (:username, :email, :password)');
-		$statement->bindParam(':username', $newUsername);
-		$statement->bindParam(':email', $email);
-		$statement->bindParam(':password', gtCrypt($newPassword));
-		
-		$successful = $statement->execute();
-		
-		return $successful;
-	}
-	
-	function usernameIsAvailable($dbh)
-	{
-		$statement = $dbh->prepare("SELECT 1 FROM Users WHERE LOWER(username)=LOWER(?)");
-		$statement->execute(array($_POST['newUsername']));
-		$result = $statement->fetch();
-		
-		return $result == null;
-	}
-	
-	function inputIsValid()
-	{
-		extract($_POST);
-		global $errors;
-		
-		$isValid = true;
-		
-		print("InputIsvalid()");
-	
-		if ($newUsername == "")
-		{
-			$errors['noUsername'] = true;
-			$isValid = false;
-		}
-		
-		if (!usernameIsValidLength($newUsername))
-		{
-			$errors['longUsername'] = true;
-			$isValid = false;
-		}
-
-		if ($newPassword == "")
-		{
-			$errors['noPassword'] = true;
-			$isValid = false;
-		}
-		
-		if (!passwordIsValidLength($newPassword))
-		{
-			$errors['longPassword'] = true;
-			$isValid = false;
-		}
-
-		//password mismatch
-		if ($newPassword != $retypePassword)
-		{
-			$errors['passwordMismatch'] = true;
-			$isValid = false;
-		}
-
-		if ($email == "")
-		{
-			$errors['noEmail'] = true;
-			$isValid = false;
-		}
-		
-		if (!isValidEmail($email))
-		{
-			$errors['invalidEmail'] = true;
-			$isValid = false;
-		}
-		
-		if ($email != $retypeEmail)
-		{
-			$errors['emailMismatch'] = true;
-			$isValid = false;
-		}
-		
-		return $isValid;
-	}
+	//main code
+	$errors = array(0);
 	
 	if (isset($_POST['btnRegister']))
 	{
-		gtRequire("functions/validate.php");
+		extract($_POST);
+
+		$result = UserFactory::createUser($newUsername, $newPassword, $retypePassword, $email, $retypeEmail); //array if errors; User if successful
 	
-		//register the user
-		if (inputIsValid())
+		if (gettype($result) == "array")
 		{
-			gtRequire("functions/connectToDB.php");
-			$dbh = getConnection();
+			$errors = $result;
+		}
+		else //successful
+		{
+			gtRequireOnce('scripts/startSession.php');
 			
-			if (!usernameIsAvailable($dbh))
-			{
-				$errors['usernameTaken'] = true;
-			}
-			else
-			{
-				$successful = insertUserIntoDB($dbh);
-				
-				if ($successful)
-				{
-					header('Location: register-successful.php');
-				}
-			}
-			
-			$pdo = null;
+			$_SESSION['user'] = $result;
+		
+			header('Location: register-successful.php');
 		}
 	}
 	else if (isset($_POST['btnRegisterLink']))
