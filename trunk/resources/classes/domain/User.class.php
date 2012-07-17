@@ -22,11 +22,11 @@ class User
 	
 	public function passwordMatches($password)
 	{
-		return ($encryptedPassword === Encryptor::encrypt($password));
+		return ($this->encryptedPassword === Encryptor::encrypt($password));
 	}
 	
 	/**
-		ret
+		returns a User with $username if successful; an array of problems if the inputs are invalid
 	*/
 	public static function login($username, $password)
 	{
@@ -35,6 +35,28 @@ class User
 		if ($result !== true)
 		{
 			return $result;
+		}
+		else
+		{
+			$user = UserRepository::retrieveUserByUsername($username);
+			
+			if ($user === null)
+			{
+				$problem = array('badUsername' => true);
+				return $problem;
+			}
+			else
+			{
+				if ($user->passwordMatches($password))
+				{
+					return $user;
+				}
+				else
+				{
+					$problem = array('badPassword' => true);
+					return $problem;
+				}
+			}
 		}
 	}
 	

@@ -40,6 +40,7 @@
 		{
 			case 'User':
 			case 'UserFactory':
+			case 'UserRepository':
 			case 'Validator':
 			case 'Encryptor':
 				$classpath = 'domain/';

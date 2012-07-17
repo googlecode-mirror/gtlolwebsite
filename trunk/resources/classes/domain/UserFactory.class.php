@@ -27,7 +27,7 @@
 					
 					if($successful)
 					{
-						$user = UserRepository::retrieveUser($username);
+						$user = UserRepository::retrieveUserByUsername($username);
 						return $user;
 					}
 					else

@@ -30,30 +30,16 @@
 		
 		if (!isset($errors))
 		{
-			gtRequire("functions/connectToDB.php");
-			gtRequire("functions/encrypt.php");
+			$result = User::login($username, $password);
 			
-			$dbh = getConnection();
-			
-			$statement = $dbh->prepare("SELECT id, username, password, name FROM Users WHERE LOWER(username)=LOWER(:username)");
-			$statement->bindParam(':username', $username);
-			$statement->execute();
-			$result = $statement->fetch();
-
-			if ($result == null)
+			if (is_array($result))
 			{
-				$errors['badUsername'] = true;
-			}
-			else if ($result['password'] != gtCrypt($password))
-			{
-				$errors['badPassword'] = true;
+				//there were problems logging in
+				$errors = $result;
 			}
 			else
 			{
-				//login successful
-				$user = new User($result['id'], $result['username'], $result['password'], $result['name']);
-				$_SESSION['user'] = $user;
-				
+				$_SESSION['user'] = $result;
 				gtInclude("scripts/redirect.php");
 			}
 		}
