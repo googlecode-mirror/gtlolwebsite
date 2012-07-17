@@ -38,6 +38,7 @@
 	{
 		switch($classname)
 		{
+			// DOMAIN
 			case 'User':
 			case 'UserFactory':
 			case 'UserRepository':
@@ -45,6 +46,8 @@
 			case 'Encryptor':
 				$classpath = 'domain/';
 				break;
+				
+			// INFRASTRUCTURE
 			case 'DBConnection':
 				$classpath = 'infrastructure/';
 				break;

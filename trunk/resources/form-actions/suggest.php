@@ -5,10 +5,20 @@
 	gtRequireOnce('scripts/startSession.php');
 	gtRequireOnce('constants.php');
 	
-	//send email
+	extract($_POST);
+	$mailSuccessful = mail("jdreddaway@gatech.edu", $subject, $message);
+	$_SESSION['success'] = $mailSuccessful;
 	
-	$_SESSION['message'] = "Sorry! This functionality has not been completed yet.";
-	$_SESSION['success'] = false;
+	if ($mailSuccessful)
+	{
+		$_SESSION['message'] = "Your suggestion was successfully sent!
+								Note: abusing this suggestion system will result in a permanent ban on your account.";
+	}
+	else
+	{
+		$_SESSION['message'] = "An error occurred while sending your suggestion.
+								Please try again later or contact the web developer if the problem persists.";
+	}
 	
 	header("Location: http://" . $SERVER . "/suggest.php");
 ?>
