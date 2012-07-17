@@ -167,7 +167,18 @@
 <div id="main">
 	<?php gtInclude("includes/top.php"); ?>
 	<form id="frmRegister" class="secondaryFGColor" action="register.php" method="post" onsubmit="return validate();">
-		If you already have an account, click <a href="/users/login.php">here</a> to login.<br />
+		<p>
+			If you already have an account, click <a href="/users/login.php">here</a> to login.
+		</p>
+		<?php
+			if (isset($errors['databaseError']))
+			{
+		?>
+				<p style='color:red;'>
+					An error occurred while inserting the new user into the database.
+					Please try again or contact the web developer if problems persist.
+				</p>
+		<?php } ?>
 		<table>
 			<tr>
 				<td>Username:</td>

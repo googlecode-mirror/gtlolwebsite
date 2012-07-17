@@ -57,11 +57,12 @@
 		private static function usernameIsAvailable($username)
 		{
 			$connection = DBConnection::getConnection();
-			$statement = $connection->prepare("SELECT 1 FROM Users WHERE LOWER(username)=LOWER(?)");
-			$statement->bindParam(1, $username);
+			$statement = $connection->prepare("SELECT 1 FROM Users WHERE LOWER(username)=LOWER(:username)");
+			$statement->bindParam(":username", $username);
+			$statement->execute();
 			$result = $statement->fetch();
 			
-			return $result == null;
+			return ($result == null);
 		}
 		
 		/**
