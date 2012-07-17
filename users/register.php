@@ -31,7 +31,7 @@
 
 		$result = UserFactory::createUser($newUsername, $newPassword, $retypePassword, $email, $retypeEmail); //array if errors; User if successful
 	
-		if (gettype($result) == "array")
+		if (is_array($result))
 		{
 			$errors = $result;
 		}
