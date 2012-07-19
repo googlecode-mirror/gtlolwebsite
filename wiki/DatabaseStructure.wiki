@@ -33,6 +33,7 @@ DB Name: gtlol
 </table>
 
 ==Roles==
+
 <table cellpadding="4px" border="1px">
  <tr>
   <th>id</th>
@@ -45,6 +46,7 @@ DB Name: gtlol
 </table>
 
 ==UserRoles==
+
 <table cellpadding="4px" border="1px">
  <tr>
   <th>user_id</th>
