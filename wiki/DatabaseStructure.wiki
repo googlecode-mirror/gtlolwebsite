@@ -61,3 +61,5 @@ DB Name: gtlol
   <td>Foreign Key (Roles.id)</td>
  </tr>
 </table>
+
+Users can have multiple roles.
