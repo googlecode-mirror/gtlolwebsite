@@ -1,9 +1,4 @@
-<?php
-	require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/initialize.php";
-	gtRequire("scripts/requireLogin.php");
-	gtRequireOnce("scripts/startSession.php");
-	
-?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/initialize.php"; ?>
 
 <!DOCTYPE html>
 
@@ -16,7 +11,7 @@
 <div id="main">
 	<?php gtInclude("includes/top.php"); ?>
 	<div class="primaryFGColor contentBox">
-		Welcome <?php print($_SESSION['user']->getName()); ?>!
+		
 	</div>
 	<?php gtInclude("includes/foot.php"); ?>
 </div>
