@@ -31,3 +31,31 @@ DB Name: gtlol
   <td></td>
  </tr>
 </table>
+
+==Roles==
+<table cellpadding="4px" border="1px">
+ <tr>
+  <th>id</th>
+  <th>name</th>
+ </tr>
+ <tr>
+  <td>Primary Key</td>
+  <td>varchar(30)</td>
+ </tr>
+</table>
+
+==UserRoles==
+<table cellpadding="4px" border="1px">
+ <tr>
+  <th>user_id</th>
+  <th>role_id</th>
+ </tr>
+ <tr>
+  <td>Composite Primary Key</td>
+  <td>Composite Primary Key</td>
+ </tr>
+ <tr>
+  <td>Foreign Key (Users.id)</td>
+  <td>Foreign Key (Roles.id)</td>
+ </tr>
+</table>
