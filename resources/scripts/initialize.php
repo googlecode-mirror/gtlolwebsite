@@ -38,15 +38,19 @@
 	{
 		switch($classname)
 		{
-			// DOMAIN
+			// LIVINGROOM (ie DOMAIN)
 			case 'User':
-			case 'UserFactory':
-			case 'UserRepository':
 			case 'Validator':
 			case 'Encryptor':
-				$classpath = 'domain/';
+				$classpath = 'livingroom/';
 				break;
-				
+			
+			// BASEMENT (stuff that is in the domain but not pertinent to the model)
+			case 'UserFactory':
+			case 'UserRepository':
+				$classpath = 'basement/';
+				break;
+			
 			// INFRASTRUCTURE
 			case 'DBConnection':
 				$classpath = 'infrastructure/';
