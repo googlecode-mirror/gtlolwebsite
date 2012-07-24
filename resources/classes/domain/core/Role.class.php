@@ -2,11 +2,11 @@
 
 class Role
 {
-	private $role;
+	private $roleID;
 	
-	public function __construct($role)
+	public function __construct($roleID)
 	{
-		$this->role = $role;
+		$this->roleID = $roleID;
 	}
 	
 	/**
@@ -14,19 +14,8 @@ class Role
 	*/
 	public function userHasRole($user)
 	{
-		$userRoles = RolesRepository::retrieveRolesForUser($user);
-		
-		$i = 0;
-		while($i < count($userRoles))
-		{
-			if ($this->equals($userRoles[$i]))
-			{
-				return true;
-			}
-			$i++;
-		}
-		
-		return false;
+		$userHasRole = RolesRepository::userHasRole($user, $this);
+		return $userHasRole;
 	}
 	
 	public function equals($other)
@@ -34,10 +23,7 @@ class Role
 		return $this->role == $other->role;
 	}
 	
-	public static function getRole($role)
-	{
-		return new Role($role);
-	}
+	public function getID() { return $roleID; }
 }
 
 ?>

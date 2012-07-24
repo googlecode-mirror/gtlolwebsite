@@ -30,7 +30,7 @@ class User
 	*/
 	public static function login($username, $password)
 	{
-		$result = self::inputsAreValid($username, $password);
+		$result = self::inputIsValid($username, $password);
 		
 		if ($result !== true)
 		{
@@ -60,10 +60,45 @@ class User
 		}
 	}
 	
+	public static function registerUser($username, $password, $retypedPassword, $email, $retyptedEmail)
+	{
+		$errors = null;
+			
+		$result = self::inputIsValid($username, $password, $retypedPassword, $email, $retyptedEmail);
+
+		if ($result !== true)
+		{
+			return $result;
+		}
+		else
+		{
+			if (!self::usernameIsAvailable($username))
+			{
+				$errors['usernameTaken'] = true;
+				return $errors;
+			}
+			else
+			{
+				$successful = self::insertUserIntoDB($username, $password, $email);
+				
+				if($successful)
+				{
+					$user = UserRepository::retrieveUserByUsername($username);
+					return $user;
+				}
+				else
+				{
+					$errors['databaseError'] = true;
+					return $errors;
+				}
+			}
+		}
+	}
+	
 	/**
 		returns true if the inputs are valid; an array of errors (key = error name; value = true) if inputs are invalid
 	*/
-	private static function inputsAreValid($username, $password)
+	private static function inputIsValid($username, $password)
 	{
 		//validate data
 		if (!usernameIsValidLength($username))
@@ -77,6 +112,62 @@ class User
 		}
 		
 		return (isset($errors) ? $errors : true);
+	}
+	
+	/**
+		returns true if the input is valid; an array of errors (key is error name, value is true) if invalid
+	*/
+	private static function inputIsValid($username, $password, $retypedPassword, $email, $retypedEmail)
+	{
+		if ($username == "")
+		{
+			$errors['noUsername'] = true;
+		}
+		
+		if (!Validator::usernameIsValidLength($username))
+		{
+			$errors['longUsername'] = true;
+		}
+
+		if ($password == "")
+		{
+			$errors['noPassword'] = true;
+		}
+		
+		if (!Validator::passwordIsValidLength($password))
+		{
+			$errors['longPassword'] = true;
+		}
+
+		//password mismatch
+		if ($password != $retypedPassword)
+		{
+			$errors['passwordMismatch'] = true;
+		}
+
+		if ($email == "")
+		{
+			$errors['noEmail'] = true;
+		}
+		
+		if (!Validator::isValidEmail($email))
+		{
+			$errors['invalidEmail'] = true;
+		}
+		
+		if ($email != $retypedEmail)
+		{
+			$errors['emailMismatch'] = true;
+		}
+		
+		return (isset($errors) ? $errors : true);
+	}
+	
+	private static function usernameIsAvailable($username)
+	{
+		$result = UserRepository::retrieveUserByUsername($username);
+		$usernameIsAvailable = $result === null;
+		return $usernameIsAvailable;
 	}
 }
 ?>
