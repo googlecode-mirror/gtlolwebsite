@@ -1,0 +1,15 @@
+#summary Describes the organization of the domain and how the domain should be used.
+
+==Layered Architecture==
+
+The classes for the website are organized into a layered architecture:
+
+  * Application (ie the website)
+  * Domain
+  * Infrastructure (functionality that is not part of the domain logic)
+
+Classes in a layer may not use classes in a layer above them, but they may use classes in a layer beneath them.
+
+==Domain File Structure==
+
+The domain is organized into the core and other subdomains. Each of these contexts should has a "seeds" folder that contains classes pertaining to the persistence of the classes in that context (ie. it holds the factories and repositories). These persistence classes are restricted in scope to the domain. Therefore, code in the application layer should not access classes in the "seeds" folders.
