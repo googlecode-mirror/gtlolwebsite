@@ -30,7 +30,7 @@ class User
 	*/
 	public static function login($username, $password)
 	{
-		$result = self::inputIsValid($username, $password);
+		$result = self::loginInputIsValid($username, $password);
 		
 		if ($result !== true)
 		{
@@ -64,7 +64,7 @@ class User
 	{
 		$errors = null;
 			
-		$result = self::inputIsValid($username, $password, $retypedPassword, $email, $retyptedEmail);
+		$result = self::registerInputIsValid($username, $password, $retypedPassword, $email, $retyptedEmail);
 
 		if ($result !== true)
 		{
@@ -79,12 +79,11 @@ class User
 			}
 			else
 			{
-				$successful = self::insertUserIntoDB($username, $password, $email);
+				$result = UserFactory::createUser($username, $password, $email);
 				
-				if($successful)
+				if($result !== null)
 				{
-					$user = UserRepository::retrieveUserByUsername($username);
-					return $user;
+					return $result;
 				}
 				else
 				{
@@ -98,7 +97,7 @@ class User
 	/**
 		returns true if the inputs are valid; an array of errors (key = error name; value = true) if inputs are invalid
 	*/
-	private static function inputIsValid($username, $password)
+	private static function loginInputIsValid($username, $password)
 	{
 		//validate data
 		if (!usernameIsValidLength($username))
@@ -117,7 +116,7 @@ class User
 	/**
 		returns true if the input is valid; an array of errors (key is error name, value is true) if invalid
 	*/
-	private static function inputIsValid($username, $password, $retypedPassword, $email, $retypedEmail)
+	private static function registerInputIsValid($username, $password, $retypedPassword, $email, $retypedEmail)
 	{
 		if ($username == "")
 		{

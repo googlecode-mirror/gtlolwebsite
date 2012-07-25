@@ -29,7 +29,7 @@
 	{
 		extract($_POST);
 
-		$result = UserFactory::createUser($newUsername, $newPassword, $retypePassword, $email, $retypeEmail); //array if errors; User if successful
+		$result = User::registerUser($newUsername, $newPassword, $retypePassword, $email, $retypeEmail); //array if errors; User if successful
 	
 		if (is_array($result))
 		{
