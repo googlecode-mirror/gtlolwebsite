@@ -2,43 +2,23 @@
 	class UserFactory
 	{
 		/**
-			returns a map (key = error name; value = true) if there are errors or a User if it was successfully created
+			returns a User if successful; null if unsuccessful
 		*/
-		public static function createUser($username, $password, $retypedPassword, $email, $retyptedEmail)
+		public static function createUser($username, $password, $email)
 		{
-			$errors = null;
+			$insertSuccessful = self::insertUserIntoDB($username, $password, $email);
 			
-			$result = self::inputIsValid($username, $password, $retypedPassword, $email, $retyptedEmail);
-
-			if ($result !== true)
+			if ($insertSuccessful)
 			{
-				return $result;
+				$user = UserRepository::retrieveUserByUsername($username);
+				return $user;
 			}
 			else
 			{
-				if (!self::usernameIsAvailable($username))
-				{
-					$errors['usernameTaken'] = true;
-					return $errors;
-				}
-				else
-				{
-					$successful = self::insertUserIntoDB($username, $password, $email);
-					
-					if($successful)
-					{
-						$user = UserRepository::retrieveUserByUsername($username);
-						return $user;
-					}
-					else
-					{
-						$errors['databaseError'] = true;
-						return $errors;
-					}
-				}
+				return null;
 			}
 		}
-		
+	
 		//returns true if the user was successfully added into the database
 		private static function insertUserIntoDB($username, $password, $email)
 		{
@@ -49,7 +29,7 @@
 			$statement->bindParam(':email', $email);
 			$statement->bindParam(':password', $encryptedPassword);
 			
-			$successful = $statement->execute(); //true if successful; false if unsuccessful
+			$successful = $statement->execute();
 			
 			return $successful;
 		}
