@@ -39,13 +39,16 @@
 		switch($classname)
 		{
 			// DOMAIN CORE
+			case 'Encryptor':
+			case 'Role':
+			case 'Roles':
 			case 'User':
 			case 'Validator':
-			case 'Encryptor':
 				$classpath = 'domain/core/';
 				break;
 			
 			// DOMAIN CORE SEEDS
+			case 'RolesRepository':
 			case 'UserFactory':
 			case 'UserRepository':
 				$classpath = 'domain/core/seeds/';

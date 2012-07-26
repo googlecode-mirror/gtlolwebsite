@@ -16,7 +16,7 @@ class User
 	
 	public function getName() { return $this->name; }
 	
-	public function getID() { return $this-id; }
+	public function getID() { return $this->id; }
 	
 	public function getUsername() { return $this->username; }
 	

@@ -2,7 +2,7 @@
 
 class RolesRepository
 {
-	public function retrieveRolesForUser($user)
+	public static function retrieveRolesForUser($user)
 	{
 		$connection = DBConnection::getConnection();
 		
@@ -26,7 +26,7 @@ class RolesRepository
 	/**
 		returns true if $user has $role; false if $user does not have $role
 	*/
-	public function userHasRole($user, $role)
+	public static function userHasRole($user, $role)
 	{
 		$connection = DBConnection::getConnection();
 		

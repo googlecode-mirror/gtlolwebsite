@@ -1,9 +1,10 @@
 <?php
-	gtRequireOnce("scripts/requireAdmin.php");
+	gtRequireOnce("scripts/requireLogin.php");
 	
-	//database stuff should be done in RolesRepository
-	//User class should have a boolean isAdmin()
-	//Roles Class?
-	//	Enum of Roles
-	//	boolean userHasRole(Role)
+	$adminRole = new Role(Roles::ADMIN);
+	$user = $_SESSION['user'];
+	if (!$adminRole->userHasRole($user))
+	{
+		header("Location: admin-required.php?returnURL=" . $_SERVER['PHP_SELF']);
+	}
 ?>
