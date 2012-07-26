@@ -5,8 +5,8 @@
 */
 class Roles
 {
-	public const ADMIN = 1;
-	public const DFAULT = 2;
+	const ADMIN = 1;
+	const DFAULT = 2;
 
 	private function __construct() { }
 }

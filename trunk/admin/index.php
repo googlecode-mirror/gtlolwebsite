@@ -15,7 +15,12 @@
 <div id="main">
 	<?php gtInclude("includes/top.php"); ?>
 	<div class="primaryFGColor contentBox">
-		
+		<h1>Administrator Home Page</h1>
+		<ul>
+			<li>
+				<a href="add-announcement.php">Add Announcement</a>
+			</li>
+		</ul>
 	</div>
 	<?php gtInclude("includes/foot.php"); ?>
 </div>

@@ -23,7 +23,7 @@ class Role
 		return $this->role == $other->role;
 	}
 	
-	public function getID() { return $roleID; }
+	public function getID() { return $this->roleID; }
 }
 
 ?>
