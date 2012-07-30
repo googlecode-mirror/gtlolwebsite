@@ -70,11 +70,13 @@ Users can have multiple roles.
  <tr>
   <th>id</th>
   <th>announcer_id</th>
+  <th>title</th>
   <th>announcement</th>
  </tr>
  <tr>
   <td>Primary Key</td>
   <td>Foreign Key (Users.id)</td>
+  <td>varchar(255)</td>
   <td>Text</td>
  </tr>
  <tr>
