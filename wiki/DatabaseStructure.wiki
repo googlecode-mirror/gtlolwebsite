@@ -63,3 +63,23 @@ DB Name: gtlol
 </table>
 
 Users can have multiple roles.
+
+==Announcements==
+
+<table cellpadding="4px" border="1px">
+ <tr>
+  <th>id</th>
+  <th>announcer_id</th>
+  <th>announcement</th>
+ </tr>
+ <tr>
+  <td>Primary Key</td>
+  <td>Foreign Key (Users.id)</td>
+  <td>Text</td>
+ </tr>
+ <tr>
+  <td></td>
+  <td>Not Null</td>
+  <td>Not Null</td>
+ </tr>
+</table>
