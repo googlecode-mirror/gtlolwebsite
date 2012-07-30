@@ -24,5 +24,14 @@ CREATE TABLE UserRoles
 	FOREIGN KEY (role_id) REFERENCES Roles(id)
 ) ENGINE=InnoDB;
 
+CREATE TABLE Announcements
+(
+	id INT UNSIGNED PRIMARY KEY,
+	announcer_id INT UNSIGNED NOT NULL,
+	title VARCHAR(255) NOT NULL,
+	announcement TEXT NOT NULL,
+	FOREIGN KEY (announcer_id) REFERENCES Users(id)
+)
+
 */
 ?>
