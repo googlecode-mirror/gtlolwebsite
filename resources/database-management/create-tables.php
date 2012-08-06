@@ -30,6 +30,7 @@ CREATE TABLE Announcements
 	announcer_id INT UNSIGNED NOT NULL,
 	title VARCHAR(255) NOT NULL,
 	announcement TEXT NOT NULL,
+	created_date DATETIME NOT NULL,
 	FOREIGN KEY (announcer_id) REFERENCES Users(id)
 )
 

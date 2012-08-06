@@ -14,7 +14,7 @@
 <div id="main">
 	<?php gtInclude("includes/top.php"); ?>
 	<div class="primaryFGColor contentBox">
-		<h2>Add Announcement</h2>
+		<h1>Edit Announcement</h1>
 		<form id="frmAnnouncement" name="frmAnnouncement" method="post">
 			<table>
 				<tr>
