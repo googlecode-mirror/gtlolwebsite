@@ -39,6 +39,7 @@
 		switch($classname)
 		{
 			// DOMAIN CORE
+			case 'Announcement':
 			case 'Encryptor':
 			case 'Role':
 			case 'Roles':
@@ -48,6 +49,8 @@
 				break;
 			
 			// DOMAIN CORE SEEDS
+			case 'AnnouncementsFactory':
+			case 'AnnouncementsRepository':
 			case 'RolesRepository':
 			case 'UserFactory':
 			case 'UserRepository':
