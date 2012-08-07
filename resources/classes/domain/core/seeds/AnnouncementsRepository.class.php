@@ -3,6 +3,44 @@
 class AnnouncementsRepository
 {
 	/**
+		Adds the announcement to the database.
+		returns true if the announcement was inserted successfully
+	*/
+	public static function addAnnouncement($title, $text, $creatorID)
+	{
+		$sql =
+		"
+			INSERT INTO Announcements
+			(
+				announcer_id,
+				title,
+				announcement,
+				created_date
+			)
+			VALUES
+			(
+				:announcer_id,
+				:title,
+				:announcement,
+				:created_date
+			)
+		";
+		
+		$dateCreated = new DateTime();
+		$strDateCreated = $dateCreated->format('Y-m-d G:i:s');
+	
+		$connection = DBConnection::getConnection();
+		$statement = $connection->prepare($sql);
+		$statement->bindParam(":announcer_id", $creatorID);
+		$statement->bindParam(":title", $title);
+		$statement->bindParam(":announcement", $text);
+		$statement->bindParam(":created_date", $strDateCreated);
+		
+		$insertWasSuccessful = $statement->execute();
+		return $insertWasSuccessful;
+	}
+
+	/**
 		$afterDateTime: The earliest date/time that the announcement(s) was created; null if no restriction
 		$maxNumAnnouncements: The maximum number of announcements to return; null if no limit;
 		$userID: The id of the user who created the announcement(s); null if no restriction
@@ -17,6 +55,16 @@ class AnnouncementsRepository
 		$statement = $connection->prepare($strSQL);
 		DBConnection::bindParameters($statement, $parameters);
 		$statement->execute();
+	}
+	
+	public static function updateAnnouncement($id, $title, $text)
+	{
+		//TODO finish
+	}
+	
+	public static function deleteAnnouncement($id)
+	{
+		//TODO finish
 	}
 	
 	/**
@@ -40,18 +88,18 @@ class AnnouncementsRepository
 		}
 		
 		$condition = DBConnection::createExclusiveCondition($sqlConditions);
-		
 		$whereClause = $condition == null ? "" : "WHERE $condition";
 		
-		//TODO finish
+		$strSQL = "SELECT * FROM Announcements $whereClause";
 		
 		if ($maxNumAnnouncements != null && $maxNumAnnouncements > 0)
 		{
-			//add LIMIT clause
+			$strSQL .= " LIMIT $maxNumAnnouncements";
 		}
+		
+		$result = array($strSQL, $parameters);
+		return $result;
 	}
-	
-	private 
 }
 
 ?>
