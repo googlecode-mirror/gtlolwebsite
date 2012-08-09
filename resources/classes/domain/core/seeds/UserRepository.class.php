@@ -1,6 +1,26 @@
 <?php
 	class UserRepository
 	{
+		public static function addUser($username, $password, $email)
+		{
+			$insertSuccessful = self::insertUserIntoDB($username, $password, $email);
+			
+			if ($insertSuccessful)
+			{
+				$user = UserRepository::retrieveUserByUsername($username);
+				return $user;
+			}
+			else
+			{
+				return null;
+			}
+		}
+		
+		public static function removeUserById($id)
+		{
+			//TODO finish
+		}
+	
 		/**
 			returns a User if the user is found or null otherwise
 		*/
@@ -21,9 +41,24 @@
 			return $user;
 		}
 		
-		//TODO complete
 		public static function updateUser()
 		{
+			//TODO complete
+		}
+		
+		//returns true if the user was successfully added into the database
+		private static function insertUserIntoDB($username, $password, $email)
+		{
+			$connection = DBConnection::getConnection();
+			$encryptedPassword = Encryptor::encrypt($password);
+			$statement = $connection->prepare('INSERT INTO Users (username, email, password) VALUES (:username, :email, :password)');
+			$statement->bindParam(':username', $username);
+			$statement->bindParam(':email', $email);
+			$statement->bindParam(':password', $encryptedPassword);
+			
+			$successful = $statement->execute();
+			
+			return $successful;
 		}
 		
 		/**

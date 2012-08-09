@@ -79,7 +79,7 @@ class User
 			}
 			else
 			{
-				$result = UserFactory::createUser($username, $password, $email);
+				$result = UserRepository::addUser($username, $password, $email);
 				
 				if($result !== null)
 				{
