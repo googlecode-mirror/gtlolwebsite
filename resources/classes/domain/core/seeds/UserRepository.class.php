@@ -75,7 +75,7 @@
 			$statement->execute();
 			$result = $statement->fetch();
 
-			if ($result == null)
+			if ($result === null)
 			{
 				return null;
 			}

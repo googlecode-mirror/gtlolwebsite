@@ -51,10 +51,16 @@ class AnnouncementsRepository
 		$strSQL = $result[0];
 		$parameters = $result[1];
 		
-		$connection = DBConnection::getConnection();
-		$statement = $connection->prepare($strSQL);
-		DBConnection::bindParameters($statement, $parameters);
-		$statement->execute();
+		$statement = DBConnection::executeSQLSelect($strSQL, $parameters);
+		$announcements = array();
+		$i = 0;
+		
+		while ($row = $statement->fetch())
+		{
+			$announcements[$i++] = self::convertRowToAnnouncement($row);
+		}
+		
+		return $announcements;
 	}
 	
 	public static function updateAnnouncement($id, $title, $text)
@@ -99,6 +105,18 @@ class AnnouncementsRepository
 		
 		$result = array($strSQL, $parameters);
 		return $result;
+	}
+	
+	private static function convertRowToAnnouncement($arr)
+	{
+		$id = $arr['id'];
+		$announcerID = $arr['announcer_id'];
+		$title = $arr['title'];
+		$text = $arr['announcement'];
+		$createdDate = $arr['created_date'];
+		
+		$announcement = new Announcement($id, $title, $text, $createdDate, $announcerID);
+		return $announcement;
 	}
 }
 

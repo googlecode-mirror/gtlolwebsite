@@ -39,6 +39,7 @@
 		switch($classname)
 		{
 			// CONTROLLERS
+			case 'AnnouncementController':
 			case 'SessionController':
 			case 'UserController':
 				$classpath = 'controllers/';

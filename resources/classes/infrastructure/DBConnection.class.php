@@ -4,7 +4,7 @@ class DBConnection
 {
 	private static $connection = null;
 	
-	public static function getConnection()
+	private static function getConnection()
 	{
 		if (self::$connection === null)
 		{
@@ -18,10 +18,36 @@ class DBConnection
 	}
 	
 	/**
+		returns an executed PDOStatement object that you can use to fetch results
+	*/
+	public static function executeSQLSelect($strSQL, $parameters)
+	{
+		$connection = self::getConnection();
+		$statement = $connection->prepare($strSQL);
+		self::bindParameters($statement, $parameters);
+		$statement->execute();
+		
+		return $statement;
+	}
+	
+	/**
+		returns the result of executing $strSQL
+	*/
+	public static function executeSQLCommand($strSQL, $parameters)
+	{
+		$connection = self::getConnection();
+		$statement = $connection->prepare($strSQL);
+		self::bindParameters($statement, $parameters);
+		$wasSuccessful = $statement->execute();
+		
+		return $wasSuccessful
+	}
+	
+	/**
 		$statement: the PDOStatement to which the parameters will be bound
 		$parameters: an array of parameters where the key is the identifier in the SQL query and the value is its value
 	*/
-	public static function bindParameters(&$statement, $parameters)
+	private static function bindParameters(&$statement, $parameters)
 	{
 		$keys = array_keys($parameters);
 		
