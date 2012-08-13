@@ -29,7 +29,7 @@
 	{
 		extract($_POST);
 
-		$result = User::registerUser($newUsername, $newPassword, $retypePassword, $email, $retypeEmail); //array if errors; User if successful
+		$result = UserController::registerUser($newUsername, $newPassword, $retypePassword, $email, $retypeEmail); //array if errors; true if successful
 	
 		if (is_array($result))
 		{
@@ -37,10 +37,6 @@
 		}
 		else //successful
 		{
-			gtRequireOnce('scripts/startSession.php');
-			
-			$_SESSION['user'] = $result;
-		
 			header('Location: register-successful.php');
 		}
 	}

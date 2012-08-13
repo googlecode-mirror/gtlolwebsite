@@ -2,7 +2,6 @@
 	require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/initialize.php";
 	
 	gtRequire("scripts/requireNoLogin.php");
-	gtRequire("functions/validate.php");
 	
 	function addVisibleStyle($errName)
 	{
@@ -28,20 +27,17 @@
 	{
 		extract($_POST); //gets $username and $password
 		
-		if (!isset($errors))
+		$result = SessionController::login($username, $password);
+		
+		if (is_array($result))
 		{
-			$result = User::login($username, $password);
-			
-			if (is_array($result))
-			{
-				//there were problems logging in
-				$errors = $result;
-			}
-			else
-			{
-				$_SESSION['user'] = $result;
-				gtInclude("scripts/redirect.php");
-			}
+			//there were problems logging in
+			$errors = $result;
+		}
+		else
+		{
+			//login successful
+			gtInclude("scripts/redirect.php");
 		}
 	}
 ?>

@@ -1,9 +1,7 @@
 <?php
 	gtRequireOnce("scripts/requireLogin.php");
 	
-	$adminRole = new Role(Roles::ADMIN);
-	$user = $_SESSION['user'];
-	if (!$adminRole->userHasRole($user))
+	if (!SessionController::currentUserIsAdmin())
 	{
 		header("Location: admin-required.php?returnURL=" . $_SERVER['PHP_SELF']);
 	}

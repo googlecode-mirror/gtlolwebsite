@@ -1,7 +1,5 @@
 <?php
-	gtRequireOnce("scripts/startSession.php");
-	
-	if (!isset($_SESSION['user']))
+	if (!SessionController::userIsLoggedIn())
 	{
 		gtRequireOnce("constants.php");
 		
