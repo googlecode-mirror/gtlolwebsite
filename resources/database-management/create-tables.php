@@ -1,7 +1,7 @@
 <?php
 /*
 CREATE TABLE Users(
- id INT AUTO_INCREMENT UNSIGNED PRIMARY KEY,
+ id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
  username VARCHAR(30) NOT NULL UNIQUE,
  name VARCHAR(50),
  email VARCHAR(100) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE UserRoles
 	PRIMARY KEY (user_id, role_id),
 	FOREIGN KEY (user_id) REFERENCES Users(id),
 	FOREIGN KEY (role_id) REFERENCES Roles(id)
-) ENGINE=InnoDB;
+);
 
 CREATE TABLE Announcements
 (
@@ -32,7 +32,7 @@ CREATE TABLE Announcements
 	announcement TEXT NOT NULL,
 	created_date DATETIME NOT NULL,
 	FOREIGN KEY (announcer_id) REFERENCES Users(id)
-)
+);
 
 */
 ?>

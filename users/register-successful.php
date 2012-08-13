@@ -18,7 +18,7 @@
 <div id="main">
 	<?php gtInclude("includes/top.php"); ?>
 	<p id="content" class="primaryFGColor">
-		Registration successful!
+		Registration successful! Please login to continue.
 	</p>
 	<?php gtInclude("includes/foot.php"); ?>
 </div>

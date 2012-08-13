@@ -26,40 +26,8 @@ class User
 	}
 	
 	/**
-		returns a User with $username if successful; an array of problems if the inputs are invalid
+		returns an array of errors if unsuccessful or a User if successful
 	*/
-	public static function login($username, $password)
-	{
-		$result = self::loginInputIsValid($username, $password);
-		
-		if ($result !== true)
-		{
-			return $result;
-		}
-		else
-		{
-			$user = UserRepository::retrieveUserByUsername($username);
-			
-			if ($user === null)
-			{
-				$problem = array('badUsername' => true);
-				return $problem;
-			}
-			else
-			{
-				if ($user->passwordMatches($password))
-				{
-					return $user;
-				}
-				else
-				{
-					$problem = array('badPassword' => true);
-					return $problem;
-				}
-			}
-		}
-	}
-	
 	public static function registerUser($username, $password, $retypedPassword, $email, $retyptedEmail)
 	{
 		$errors = null;
@@ -93,26 +61,7 @@ class User
 			}
 		}
 	}
-	
-	/**
-		returns true if the inputs are valid; an array of errors (key = error name; value = true) if inputs are invalid
-	*/
-	private static function loginInputIsValid($username, $password)
-	{
-		//validate data
-		if (!usernameIsValidLength($username))
-		{
-			$errors['longUsername'] = true;
-		}
-		
-		if (!passwordIsValidLength($password))
-		{
-			$errors['longPassword'] = true;
-		}
-		
-		return (isset($errors) ? $errors : true);
-	}
-	
+
 	/**
 		returns true if the input is valid; an array of errors (key is error name, value is true) if invalid
 	*/

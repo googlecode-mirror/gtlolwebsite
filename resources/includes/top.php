@@ -1,13 +1,11 @@
 <div id="accountInfo">
 	<?php
-		gtRequireOnce("scripts/startSession.php");
-
-		if (isset($_SESSION['user'])) //user is logged in
+		if (SessionController::userIsLoggedIn()) //user is logged in
 		{
-			$user = $_SESSION['user'];
+			$username = SessionController::getCurrentUsersUsername();
 	?>
 			<a href="/users/">
-				<?php print($user->getUsername()); ?>
+				<?php print($username); ?>
 			</a>|
 			<a href="/users/logout.php?returnURL=<?php print($_SERVER['PHP_SELF']); ?>">logout</a>
 	<?php
