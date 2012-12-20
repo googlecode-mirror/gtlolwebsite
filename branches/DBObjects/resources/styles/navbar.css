@@ -1,0 +1,102 @@
+/*
+	#navbar
+		the container of the navigation bar
+	#navbar < div
+		the container of a menu
+	#navbar < div < a
+		the title of the menu
+	#navbar < div < div
+		a the dropdown part of the menu
+	#navbar < div < div < a
+		the links in the menu
+*/
+
+#navbar
+{
+	white-space:nowrap;
+	text-align:center;
+	vertical-align:middle;
+	margin:5px 0;
+	width:100%;
+	box-shadow:0 0 20px 5px black inset;
+}
+
+#navbar a, #navbar a:link
+{
+	text-decoration:none;
+	text-align:center;
+}
+
+#navbar > div
+{
+	position:relative;
+	display:inline-block;
+	margin:5px 0px;
+}
+
+#navbar > div:first-child
+{
+	margin-left:0px
+}
+
+#navbar > div > a
+{
+	display:inline-block;
+	color:white; /*#CEA73C; */
+	background-color:black; /* #143D7B; /* blue */
+	box-shadow:0 0 10px 2px black;
+	border-radius:3px;
+	padding:5px 5px;
+	width:7em;
+	
+	transition:background-color 750ms linear;
+	-moz-transition:background-color 750ms linear;
+	-webkit-transition:background-color 750ms linear;
+	-o-transition:background-color 750ms linear;
+}
+
+#navbar > div > div
+{
+	opacity:0;
+	visibility:hidden;
+	position:absolute;
+	top:100%;
+	width:100%;
+	
+	transition:visibility 0s linear 750ms, opacity 750ms linear;
+	-moz-transition:visibility 0s linear 750ms, opacity 750ms linear;
+	-webkit-transition:visibility 0s linear 750ms, opacity 750ms linear;
+	-o-transition:visibility 0s linear 750ms, opacity 750ms linear;
+}
+
+#navbar > div:hover > a
+{
+	background-color:#CEA73C; /* old gold */
+	color:black;
+}
+
+#navbar > div:hover > div
+{
+	opacity:1;
+	visibility:visible;
+	
+	transition-delay:0s;
+	-moz-transition-delay:0s;
+	-webkit-transition-delay:0s;
+	-o-transition-delay:0s;
+}
+
+#navbar > div > div > a
+{
+	display:block;
+	background-color:#CEA73C; /* old gold */
+	padding:0.25em 0;
+	width:100%;
+	border-width:1px 0 0 0;
+	border-style:solid;
+}
+
+#navbar > div > div > a:hover
+{
+	background-color:#FFF284; /* light yellow */
+}

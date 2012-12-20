@@ -1,0 +1,38 @@
+<?php
+/*
+CREATE TABLE Users(
+ id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ username VARCHAR(30) NOT NULL UNIQUE,
+ name VARCHAR(50),
+ email VARCHAR(100) NOT NULL,
+ password VARCHAR(50) NOT NULL,
+ email_is_validated BOOLEAN NOT NULL DEFAULT 0
+);
+
+CREATE TABLE Roles
+(
+	id INT UNSIGNED PRIMARY KEY,
+	name VARCHAR(30) NOT NULL UNIQUE
+);
+
+CREATE TABLE UserRoles
+(
+	user_id INT UNSIGNED,
+	role_id INT UNSIGNED,
+	PRIMARY KEY (user_id, role_id),
+	FOREIGN KEY (user_id) REFERENCES Users(id),
+	FOREIGN KEY (role_id) REFERENCES Roles(id)
+);
+
+CREATE TABLE Announcements
+(
+	id INT UNSIGNED PRIMARY KEY,
+	announcer_id INT UNSIGNED NOT NULL,
+	title VARCHAR(255) NOT NULL,
+	announcement TEXT NOT NULL,
+	created_date DATETIME NOT NULL,
+	FOREIGN KEY (announcer_id) REFERENCES Users(id)
+);
+
+*/
+?>
