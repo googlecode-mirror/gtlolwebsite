@@ -49,6 +49,8 @@
 		//returns true if the user was successfully added into the database
 		private static function insertUserIntoDB($username, $password, $email)
 		{
+			//TODO make this use DBConnection::executeSQLCommand
+		
 			$connection = DBConnection::getConnection();
 			$encryptedPassword = Encryptor::encrypt($password);
 			$statement = $connection->prepare('INSERT INTO Users (username, email, password) VALUES (:username, :email, :password)');
@@ -69,10 +71,10 @@
 		private static function retrieveUserWhere($where, $value)
 		{
 			$connection = DBConnection::getConnection();
-				
-			$statement = $connection->prepare("SELECT id, username, password, name FROM Users WHERE $where");
-			$statement->bindParam(':value', $value);
-			$statement->execute();
+			
+			$sql = "SELECT id, username, password, name FROM Users WHERE $where";
+			$parameters[':value'] = $value;
+			$statement = DBConnection::executeSQLSelect($sql, $parameters);
 			$result = $statement->fetch();
 
 			if ($result === null)

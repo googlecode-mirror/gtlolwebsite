@@ -13,7 +13,6 @@ class AnnouncementController
 	public static function getTopNLatestAnnouncements($n)
 	{
 		$announcements = AnnouncementsRepository::retrieveAnnouncements(null, $n);
-		
 		//TODO finish
 	}
 	

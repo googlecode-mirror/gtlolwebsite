@@ -4,7 +4,10 @@ class DBConnection
 {
 	private static $connection = null;
 	
-	private static function getConnection()
+	/**
+		consider making private (which forces you to use executeSQLSelect() and executeSQLCommand()
+	*/
+	public static function getConnection()
 	{
 		if (self::$connection === null)
 		{
@@ -18,6 +21,7 @@ class DBConnection
 	}
 	
 	/**
+		indices in parameters are ":param" parts in $strSQL (without the colon)
 		returns an executed PDOStatement object that you can use to fetch results
 	*/
 	public static function executeSQLSelect($strSQL, $parameters)
@@ -40,7 +44,7 @@ class DBConnection
 		self::bindParameters($statement, $parameters);
 		$wasSuccessful = $statement->execute();
 		
-		return $wasSuccessful
+		return $wasSuccessful;
 	}
 	
 	/**
