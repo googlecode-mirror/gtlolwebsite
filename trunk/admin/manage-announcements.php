@@ -15,6 +15,9 @@
 	<?php gtInclude("includes/top.php"); ?>
 	<div class="primaryFGColor contentBox">
 		<h1>Manage Announcements</h1>
+		
+		<a href="add-announcement.php">Add Announcement</a>
+		
 		<h2>Previous Announcements</h2>
 		<?php
 			

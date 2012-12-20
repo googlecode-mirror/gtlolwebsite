@@ -19,6 +19,21 @@ body {
 	font-size: small; /* medium is 12px */
 }
 
+h1
+{
+	font-size:x-large;
+}
+
+h2
+{
+	font-size:large;
+}
+
+h3
+{
+	font-size:medium;
+}
+
 /* COLOR CLASSES */
 
 body, .primaryTextColor

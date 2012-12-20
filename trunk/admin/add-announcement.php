@@ -1,6 +1,11 @@
 <?php
 	require $_SERVER['DOCUMENT_ROOT'] . "/resources/scripts/initialize.php";
 	gtRequireOnce("scripts/requireAdmin.php");
+	
+	if (isset($_POST))
+	{
+		
+	}
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +20,7 @@
 	<?php gtInclude("includes/top.php"); ?>
 	<div class="primaryFGColor contentBox">
 		<h2>Add Announcement</h2>
-		<form id="frmAnnouncement" name="frmAnnouncement" method="post">
+		<form id="frmAnnouncement" name="frmAnnouncement" method="post" action="add-announcement.php">
 			<table>
 				<tr>
 					<td>Title:</td>
@@ -26,6 +31,8 @@
 					<td><textarea id="announcement" name="announcement" cols="100" rows="4"></textarea></td>
 				</tr>
 			</table>
+			
+			<input type="submit" />
 		</form>
 	</div>
 	<?php gtInclude("includes/foot.php"); ?>
