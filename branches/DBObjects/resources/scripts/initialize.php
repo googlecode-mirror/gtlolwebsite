@@ -65,6 +65,7 @@
 			
 			// INFRASTRUCTURE
 			case 'DBConnection':
+			case 'DBObject':
 				$classpath = 'infrastructure/';
 				break;
 			default:
