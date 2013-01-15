@@ -22,10 +22,13 @@ class DBConnection
 	
 	/**
 		indices in parameters are ":param" parts in $strSQL (without the colon)
+		$isGeneric is if $strSQL uses question marks for the parameters
 		returns an executed PDOStatement object that you can use to fetch results
 	*/
-	public static function executeSQLSelect($strSQL, $parameters)
+	public static function executeSQLSelect($strSQL, $parameters=null, $isGeneric=false)
 	{
+		print("SQL: $strSQL"); // TODO remove
+	
 		$connection = self::getConnection();
 		$statement = $connection->prepare($strSQL);
 		self::bindParameters($statement, $parameters);
@@ -35,13 +38,26 @@ class DBConnection
 	}
 	
 	/**
+		$isGeneric is if $strSQL uses question marks for the parameters
 		returns the result of executing $strSQL
 	*/
-	public static function executeSQLCommand($strSQL, $parameters)
+	public static function executeSQLCommand($strSQL, $parameters=null, $isGeneric=false)
 	{
 		$connection = self::getConnection();
 		$statement = $connection->prepare($strSQL);
-		self::bindParameters($statement, $parameters);
+		
+		if ($isGeneric)
+		{
+			$values = array_values($parameters);
+			for ($i = 1; $i <= count($values); $i++)
+			{
+				$statement->bindParam(i, $values[i]);
+			}
+		}
+		else
+		{
+			self::bindParameters($statement, $parameters);
+		}
 		$wasSuccessful = $statement->execute();
 		
 		return $wasSuccessful;
@@ -49,15 +65,18 @@ class DBConnection
 	
 	/**
 		$statement: the PDOStatement to which the parameters will be bound
-		$parameters: an array of parameters where the key is the identifier in the SQL query and the value is its value
+		$parameters: an array of parameters where the key is the identifier in the SQL query and the value is its value; can be null if there are no parameters to bind
 	*/
 	private static function bindParameters(&$statement, $parameters)
 	{
-		$keys = array_keys($parameters);
-		
-		foreach($keys as $key)
+		if ($parameters != null)
 		{
-			$statement->bindParam(":$key", $parameter[$key]);
+			$keys = array_keys($parameters);
+			
+			foreach($keys as $key)
+			{
+				$statement->bindParam(":$key", $parameter[$key]);
+			}
 		}
 	}
 	

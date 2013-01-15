@@ -1,11 +1,36 @@
 <?php
-class User
+class User extends DBObject
 {
-	private $id;
-	private $username;
-	private $name;
-	private $encryptedPassword;
+	private $id = null;
+	private $username = null;
+	private $name = null;
+	private $encryptedPassword = null;
+	
+	/**
+		if $isID
+			$arg1 is the user's id
+		else
+			$arg1 is the whereSQL to select that user
+	*/
+	public function __construct($arg1, $isID)
+	{
+		if ($isID)
+		{
+			parent::__construct("id='$id'");
+			$this->id = $id;
+		}
+		else
+		{
+			parent::__construct($this->whereSQL);
+		}
+	}
+	
+	public function commit()
+	{
+		commitHelper("Users");
+	}
 
+	/* TODO remove
 	public function __construct($id, $username, $encryptedPassword, $name)
 	{
 		$this->id = $id;
@@ -13,16 +38,66 @@ class User
 		$this->name = $name;
 		$this->encryptedPassword = $encryptedPassword;
 	}
+	*/
 	
-	public function getName() { return $this->name; }
+	public function getName()
+	{
+		if ($this->name == null)
+		{
+			populateFields();
+		}
+		return $this->name;
+	}
 	
-	public function getID() { return $this->id; }
+	public function getID()
+	{
+		if ($this->id == null)
+		{
+			populateFields();
+		}
+		return $this->id;
+	}
 	
-	public function getUsername() { return $this->username; }
+	public function getIDSQL()
+	{
+		return "SELECT id FROM Users WHERE $this->whereSQL";
+	}
+	
+	public function getUsername()
+	{
+		if ($this->username == null)
+		{
+			populateFields();
+		}
+		return $this->username;
+	}
+	
+	protected function getEncryptedPassword()
+	{
+		if ($this->encryptedPassword == null)
+		{
+			populateFields();
+		}
+		return $this->encryptedPassword;
+	}
 	
 	public function passwordMatches($password)
 	{
 		return ($this->encryptedPassword === Encryptor::encrypt($password));
+	}
+	
+	public function populateFields()
+	{
+		$statement = DBConnection::executeSQLSelect("SELECT * FROM Users WHERE $whereSQL", null);
+		
+		if ($result = $statement->fetch())
+		{
+			$this->id = $result['id'];
+			$this->username = $result['username'];
+			$this->name = $result['name'];
+			$this->encryptedPassword = $result['password'];
+			$this->whereSQL = "id='$this->id'";
+		}
 	}
 	
 	/**
